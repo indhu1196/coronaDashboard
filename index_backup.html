@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css?v=1232020">
+	<style>
+		/* .dailydeathline{
+			position: relative;
+		}
+		.linetooltip{
+			position: absolute;
+		} */
+
+		.d3-tipforline {
+			line-height: 1;
+			padding: 2px 6px;
+			background: rgba(59, 59, 59, 0.9);
+			font-family: 'Rubik', sans-serif;
+			color: #fff;
+			border-radius: 4px;
+			font-size: 16px;
+			}
+
+			.d3-tipforline p{
+				margin: 0;
+				font-family: 'Rubik', sans-serif;
+			}
+			
+			.d3-tipforline p:nth-child(1){
+				font-weight: bold;
+				margin: 5px 0 5px 0;
+			}
+			.d3-tipforline p:nth-child(2){
+				margin: 0px 0 5px 0;
+			}
+		
+			/* Creates a small triangle extender for the tooltip */
+			.d3-tipforline:after {
+			box-sizing: border-box;
+			display: inline;
+			font-size: 16px;
+			width: 100%;
+			line-height: 1;
+			color: rgba(59, 59, 59, 0.9);
+			content: "\25BC";
+			position: absolute;
+			text-align: center;
+			}
+		
+			/* Style northward tooltips specifically */
+			.d3-tipforline.n:after {
+			margin: -2px 0 0 0;
+			top: 100%;
+			left: 0;
+			}
+	</style>
+</head>
+
+<body>
+    <!-- <div class="tfcontainer">
+        <div class="worldmap"></div>
+    </div> -->
+    <div class="covidDash-wrapper">
+		<section class="dashboard-header">
+			<figure>
+				<img src="img/Asset2.png" alt="Covid" />
+			</figure>
+			<div class="dashboard-title">
+				<figure>
+					<img src="img/Asset1.png" alt="The Federal" />
+				</figure>
+				<figcaption>Coronavirus <br/>dashboard</figcaption>
+			</div>
+		</section>
+		<section class="total-affected">
+			<h1 id="totAffected" class="loading"></h1>
+			<p>TOTAL AFFECTED PERSONS</p>
+		</section>
+		<section class="deaths-recoverData">
+			<div class="deathdata">
+				<figure>
+					<img src="img/Asset4.png" alt="total death">
+				</figure>
+				<div class="deathCount">
+					<h2>Total Deaths</h2>
+					<h1 id="totDeath" class="loading"></h1>
+				</div>
+			</div>
+			<div class="recoverdata">
+				<figure>
+					<img src="img/Asset3.png" alt="total death">
+				</figure>
+				<div class="recoverCount">
+					<h2>Total Recovered</h2>
+					<h1 id="totRecovered" class="loading"></h1>
+				</div>
+			</div>
+		</section>
+		<section class="barchart">
+			<div class="left-chart">
+				 <div class="horstackchart">
+                     <div class="bar100">
+                         <div id="barmild"></div>
+                         <div id="barcritical"></div>
+                     </div>
+                 </div>
+				 <div class="totalData">
+				 	<div class="currentlyInfected">
+				 		<h2>Currently infected</h2>
+				 		<h1 id="currInfected">47,524</h1>
+				 	</div>
+				 	<div class="mildCondition">
+				 		<h2>Mild condition</h2>
+				 		<h1 id="currMild">41,736</h1>
+				 	</div>
+				 	<div class="criticalCondition">
+				 		<h2>Critical condition</h2>
+				 		<h1 id="currCritical">5,788</h1>
+				 	</div>
+				 </div>
+			</div>
+			<div class="right-chart">
+				<h1>Cases with <br />outcome</h1>
+				<p id="outcome-cases">68,722</p>
+				<div class="horstackchart">
+                    <div class="bar100">
+                        <div id="baroutcome"></div>
+                    </div>
+                </div>
+			</div>
+		</section>
+		<section class="world-impact">
+			<h1>COVID-19 world impact</h1>
+			<p>Click on a country</p>
+			<div class="map-wrapper">
+				<div class="worldmap"></div>
+				<div class="countrywiseData">
+					<div class="country">
+						<h2>Country,  Other</h2>
+						<h1 id="countryname">China</h1>
+					</div>
+					<div class="totCases">
+						<h2>Total Cases</h2>
+						<h1 id="countrytotalcases">80,757</h1>
+					</div>
+					<div class="newCases">
+						<h2>New Cases</h2>
+						<h1 id="countrynewcases">22</h1>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="dangerData">
+			<div class="totalandNew">
+				<figure>
+					<img src="img/Asset6.png">
+				</figure>
+				<div class="deathCounts">
+					<div class="topCounts">
+						<figure>
+							<img src="img/Asset4.png">
+						</figure>
+						<div class="countValue">
+							<h2>Total Deaths</h2>
+							<h1 id="countrytotaldeaths">3,136</h1>
+						</div>
+					</div>
+					<div class="downCounts">
+						<figure>
+							<img src="img/Asset11.png">
+						</figure>
+						<div class="countValue">
+							<h2>New Deaths</h2>
+							<h1 id="countrynewdeaths">+17</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="criticalData">
+				<div class="recoverCounts">
+					<h2>Total Recovered</h2>
+					<h1 id="countrytotalRecovered">60,104</h1>
+				</div>
+				<div class="criticalCounts">
+					<h2>Serious/critical</h2>
+					<h1 id="countrySerious">4,794</h1>
+				</div>
+			</div>
+		</section>
+		<section class="dailyDeaths">
+			<h1>Daily Deaths</h1>
+			<p>of Novel Coronavirus (2019-nCoV)</p>
+			<div class="dailydeathbar"></div>
+		</section>
+		<section class="totalDeaths">
+            <h1>Total Deaths</h1>
+			<p>of Novel Coronavirus (2019-nCoV)</p>
+            <div class="dailydeathline"></div>
+		</section>
+	</div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://thefederal.com/embed/common-js/d3.v4.min.js"></script>
+	<script src="js/d3-tip.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
+    <script src="js/barchart.js"></script>
+    <script src="js/linechart.js"></script>
+    <script src="js/testdata.js"></script>
+    <script src="js/map.js"></script>
+    <script type='text/javascript'>
+
+        var globalTotalData = [{"Total Cases": 128122, "New Cases": 1628, "Total Deaths": 4717, "New Deaths": 100, "Total Recovered": 68654, "Active Cases": 54775, "Serious": 5711, "Total cases 1M": 16.4}]
+		
+		var currentData = {
+            infect: 54751,
+            mild: 49040,
+            "mild%": 90,
+            serious: 5711,
+            "serious%": 10,
+            outcomeTotal: 73371,
+            "outcomeRecovered": 68654,
+            "outcomeRecovered%": 94,
+            "outcomeDeaths": 4717,
+            "outcomeDeaths%": 6
+		}
+		
+		var defaultMapData = countrywisedata.filter(function(item){
+            return item['countryId'] === "156" ;
+        })
+ 
+        var filterData = countrywisedata.filter(function(item){
+            return item['Total Cases'] !== null ;
+        })
+
+		var formatComma = d3.format(",")
+		
+
+		const renderCard = () => {
+			d3.select("#totAffected").text(formatComma(globalTotalData[0]["Total Cases"]))
+			d3.select("#totDeath").text(formatComma(globalTotalData[0]["Total Deaths"]))
+			d3.select("#totRecovered").text(formatComma(globalTotalData[0]["Total Recovered"]))
+		
+			d3.select("#currInfected").text(formatComma(currentData["infect"]))
+			d3.select("#currMild").text(formatComma(currentData["mild"]))
+			d3.select("#currCritical").text(formatComma(currentData["serious"]))
+			d3.select("#outcome-cases").text(formatComma(currentData["outcomeTotal"]))
+
+			$("#totAffected").removeClass('loading');
+			$("#totDeath").removeClass('loading');
+			$("#totRecovered").removeClass('loading');
+
+		}
+
+		// Default data =======================================
+
+		d3.select("#countryname").text(defaultMapData[0].Country)
+                
+                if(defaultMapData[0]["Total Cases"] !== "NULL" ){
+
+                    var countrytotalcases = d3.select("#countrytotalcases").text(0)
+                    countrytotalcases.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["Total Cases"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+
+                }else{
+                    d3.select("#countrytotalcases").text("-")
+                }
+                
+                
+                if(defaultMapData[0]["New Cases"] !== "NULL"){
+
+                    var countrynewcases = d3.select("#countrynewcases").text(0)
+                    countrynewcases.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["New Cases"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+        
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+                        
+
+                }else{
+                    d3.select("#countrynewcases").text("-")
+                }
+                
+
+                if(defaultMapData[0]["Total Deaths"] !== "NULL"){
+                   var countrytotaldeaths = d3.select("#countrytotaldeaths").text(0)
+                   countrytotaldeaths.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["Total Deaths"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+        
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+                }else{
+                    d3.select("#countrytotaldeaths").text("-")
+                }
+                
+                if(defaultMapData[0]["New Deaths"] !== "NULL"){
+                    var countrynewdeaths = d3.select("#countrynewdeaths").text(0)
+                    countrynewdeaths.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["New Deaths"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+        
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+
+                }else{
+                    d3.select("#countrynewdeaths").text("-")
+                }
+                
+                if(defaultMapData[0]["Total Recovered"] !== "NULL"){
+                    var countrytotalRecovered = d3.select("#countrytotalRecovered").text(0)
+                    countrytotalRecovered.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["Total Recovered"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+        
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+                }else{
+                    d3.select("#countrytotalRecovered").text("-")
+                }
+                
+                if(defaultMapData[0]["Serious"] !== "NULL"){
+                    var countrySerious = d3.select("#countrySerious").text(0)
+                    countrySerious.transition()
+                        .tween("text", function() {
+                            
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0]["Serious"]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+        
+                            return function(t) { selection.text(Math.round(interpolator(t))); };  // return value
+                            
+                        })
+                        .duration(1000);
+                }else{
+                    d3.select("#countrySerious").text("-")
+                }
+
+
+
+
+
+
+
+
+
+		//===================================================
+        
+        
+        
+        // Mild and Critical Chart
+       
+        d3.select("#barcritical")
+            .style("width", currentData["serious%"]+"%")
+            .text(currentData["serious%"]+"%")
+
+        d3.select("#barmild").text(currentData["mild%"]+"%")
+        
+        
+        // Cases with outcomechart Chart
+        d3.select("#baroutcome")
+            .style("width", currentData["outcomeRecovered%"]+"%")
+            .text(currentData["outcomeRecovered%"]+"%")
+
+
+        drawWorldMap(".worldmap");
+        drawBarchart(".dailydeathbar")
+		drawLinechart(".dailydeathline")
+		
+		setTimeout(() => {
+		renderCard();
+		}, 1000);
+    </script>
+
+</body>
+</html>
