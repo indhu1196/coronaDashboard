@@ -17,7 +17,7 @@ function drawBarchart(selector){
         .html(function(d) { 
             // return d["Daily Deaths"];
             var html = "<p>"+d.Date +"</p> "
-            html += "<p>Daily Deaths: <span>"+ d["Daily Deaths"] +"</span></p> "
+            html += "<p>Daily Deaths: <span>"+ numberWithCommas(d["Daily Deaths"]) +"</span></p> "
             return html; 
          });
     

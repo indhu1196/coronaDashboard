@@ -18,7 +18,7 @@ function drawLinechart(selector){
         .html(function(d) { 
             // return d["Total Deaths"]; 
             var html = "<p>"+d.Date +"</p> "
-            html += "<p>Total Deaths: <span>"+ d["Total Deaths"] +"</span></p> "
+            html += "<p>Total Deaths: <span>"+ numberWithCommas(d["Total Deaths"]) +"</span></p> "
             return html; 
         });
     

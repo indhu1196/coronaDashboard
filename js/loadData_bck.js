@@ -24,7 +24,7 @@ var dailyDeathData = (function() {
         'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=dailyDeaths',
         'success': function(data) {
             dailyDeathData = data;
-            // console.log("JSON RECORDS DAILY DEATH DATA:"+JSON.stringify(data, null, 4));
+            console.log("JSON RECORDS DAILY DEATH DATA:"+JSON.stringify(data, null, 4));
         }
     });
     return dailyDeathData;
@@ -38,8 +38,6 @@ var dailyTotalDeathData = (function() {
         'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=totalDeaths',
         'success': function(data) {
             dailyTotalDeathData = data;
-             //  console.log("JSON RECORDS DATA:"+JSON.stringify(data["records"], null, 4));
-            //console.log("DATA:"+data);
         }
     });
     return dailyTotalDeathData;
@@ -88,7 +86,6 @@ var indiaData = (function() {
     });
     return indiaData;
 })();
-
 var threeData = (function() {
     var threeData = null;
     jQuery.ajax({
@@ -104,21 +101,4 @@ var threeData = (function() {
     });
     return threeData;
 })();
-
-var indiaDistrictData = (function() {
-    var indiaDistrictData = null;
-    jQuery.ajax({
-        'async': false,
-        'global': false,
-        'dataType': 'json',
-        'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=distData',
-        'success': function(data) {
-            indiaDistrictData = data;
-            // console.log("data", data["list"]);
-            
-        }
-    });
-    return indiaDistrictData;
-})();
-
 
