@@ -980,7 +980,33 @@ svg.india.map {
 .stateRow.active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
-
+.highcharts-button.highcharts-contextbutton {
+                display: none;
+            }
+            .highcharts-exporting-group .highcharts-button:nth-child(2) {
+                transform: translate(94% ,5px)!important;
+            }
+            .highcharts-exporting-group .highcharts-button:nth-child(3) {
+                transform: translate(85.7% ,5px)!important;
+            }
+            .highcharts-button-box {
+                height: 20px!important;
+               fill: #dddddd; 
+            }
+            .highcharts-button text {
+                color: #4c4c4c!important;
+                fill: #4c4c4c!important;
+            }
+            .highcharts-button.highcharts-button-hover text {
+                color: #ffffff!important;
+                fill: #ffffff!important;
+            }
+            .highcharts-button.highcharts-button-hover .highcharts-button-box {
+               fill: rgb(164, 1, 1);
+            }
+            .highcharts-button text {
+                transform: translateY(-2px);
+            }
 .highcharts-credits {
     display: none;
 }
@@ -1289,5 +1315,12 @@ fill: orange!important;
         .flexcontainer {
             grid-template-columns: 100%;
         }
+	
+	.highcharts-exporting-group .highcharts-button:nth-child(2) {
+                transform: translate(310px ,5px)!important;
+            }
+            .highcharts-exporting-group .highcharts-button:nth-child(3) {
+                transform: translate(220px ,5px)!important;
+            }
     }
     
