@@ -32,7 +32,26 @@ function drawchart2(){
         });
     
         Highcharts.chart('totalDeath-container', {
-    
+    exporting: {
+                buttons: {
+                    customButton: {
+                        text: 'Linear',
+                        onclick: function() {
+                            this.yAxis[0].update({
+                                type: 'linear'
+                            });
+                        }
+                    },
+                    customButton2: {
+                        text: 'Logarithmic',
+                        onclick: function() {
+                            this.yAxis[0].update({
+                                type: 'logarithmic'
+                            });
+                        }
+                    },
+                }
+            },
             chart: {
                 height: 500
             },
