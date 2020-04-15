@@ -1324,3 +1324,16 @@ fill: orange!important;
             }
     }
     
+.allIndia {
+    background: #000000;
+    color: #fff;
+    position: absolute;
+    right: 30%;
+    top: 10%;
+    padding: 5px 15px;
+    border: none;
+    outline: none;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
