@@ -242,7 +242,7 @@
 					</div>
 					
 
-					<div class="indiamap"></div>
+					<div class="indiamap"><button class="allIndia">All India</button></div>
 					<select class="dropdownstate" onchange="showStateData()"></select>
 					<ul class="legend">
 						<!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
@@ -436,47 +436,15 @@
     <script src="js/bootstrap-fullscreen-select.js?v=3434"></script>
     <script src="js/indiamap.js"></script>
 	<script type='text/javascript'>
-
-		$(".dailyDeaths .tablebtn").on("click", function(){
-			$("#dailydeathstable").css("display", "block")
-			$(".dailydeathbar").css("display", "none")
-			$(".dailyDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		$(".dailyDeaths .chartbtn").on("click", function(){
-			$("#dailydeathstable").css("display", "none")
-			$(".dailydeathbar").css("display", "block")
-			$(".dailyDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		
-		$(".totalDeaths .tablebtn").on("click", function(){
-			$("#totaldeathstable").css("display", "block")
-			$(".dailydeathline").css("display", "none")
-			$(".totalDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		$(".totalDeaths .chartbtn").on("click", function(){
-			$("#totaldeathstable").css("display", "none")
-			$(".dailydeathline").css("display", "block")
-			$(".totalDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		
 		var defaultMapData = countrywisedata.filter(function(item){
             return item['countryId'] === "156" ;
         })
-		var defaultIndiaMapData = indiaData.filter(function(item){
-			// console.log(item);
-			
+        var defaultIndiaMapData = indiaData.filter(function(item){
             return item['stateId'] === "S13" ;
         })
         var filterData = countrywisedata.filter(function(item){
-			if( item["countryId"] !== "NULL"){
-				return item["Total Cases"] !== "NULL";
-			}
+            return item['Total Cases'] !== "NULL" ;
         })
-        
 		var formatComma = d3.format(",")
 		function numberWithCommas(x) {
             x=x.toString();
@@ -487,8 +455,8 @@
                 lastThree = ',' + lastThree;
             res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
             return res;
-		}
-		d3.select("#lastupdatedtime").text(lastupdate)
+        }
+        d3.select("#lastupdatedtime").text(lastupdate)
 		const renderCard = () => {
 			d3.select("#totAffected").text(numberWithCommas(globalTotalData[0]["Total Cases"]))
 			d3.select("#totDeath").text(numberWithCommas(globalTotalData[0]["Total Deaths"]))
@@ -503,50 +471,48 @@
 			$("#totRecovered").removeClass('loading');
 
 		}
-		// Default World data =======================================
-		// d3.select("#countryname").text(defaultMapData[0].Country)
-        // function animator(fieldName,fieldId) {
-        //     if(defaultMapData[0][fieldName] !== "NULL" ){
-        //             var countrytotalcases = d3.select("#"+fieldId).text(0)
-        //             countrytotalcases.transition()
-        //                 .tween("text", function() {
-        //                     var selection = d3.select(this);    // selection of node being transitioned
-        //                     var start = d3.select(this).text(); // start value prior to transition
-        //                     var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
-        //                     var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
-        //                     return function(t) { 
-        //                             selection.text(Math.round(interpolator(t)));
-        //                     };  // return value
-        //                 })
-        //                 .duration(1000)
-        //                 .on("end", function() {
-        //                     d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
-        //                 });
+		// Default data =======================================
+		d3.select("#countryname").text(defaultMapData[0].Country)
+        function animator(fieldName,fieldId) {
+            if(defaultMapData[0][fieldName] !== "NULL" ){
+                    var countrytotalcases = d3.select("#"+fieldId).text(0)
+                    countrytotalcases.transition()
+                        .tween("text", function() {
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+                            return function(t) { 
+                                    selection.text(Math.round(interpolator(t)));
+                            };  // return value
+                        })
+                        .duration(1000)
+                        .on("end", function() {
+                            d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
+                        });
 
-        //         }else{
-        //             d3.select("#"+fieldId).text("-")
-        //         }
-        // }      
-        // animator("Total Cases","countrytotalcases");
-        // animator("New Cases","countrynewcases");
-        // animator("Total Deaths","countrytotaldeaths");
-        // animator("New Deaths","countrynewdeaths");
-        // animator("Total Recovered","countrytotalRecovered");       
-		// animator("Serious","countrySerious"); 
+                }else{
+                    d3.select("#"+fieldId).text("-")
+                }
+        }      
+        animator("Total Cases","countrytotalcases");
+        animator("New Cases","countrynewcases");
+        animator("Total Deaths","countrytotaldeaths");
+        animator("New Deaths","countrynewdeaths");
+        animator("Total Recovered","countrytotalRecovered");       
+        animator("Serious","countrySerious");       
+        
+        // Default India Data ================================
 		
-		// Default India Data ================================
 		d3.select("#statename").text("India")
-		animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
-		// animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
-		animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
-		animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
-
-
-
-
-
+        animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
+        // animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
+        animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
+        animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
+		
 		//===================================================
         // Mild and Critical Chart
+        console.log("Current Data"+currentData);
         var recovered_p = currentData[0]["recovered_p"];
         var critical_p = currentData[0]["critical_p"];
         var mild_condition_p = currentData[0]["mild_condition_p"];
@@ -561,15 +527,47 @@
         d3.select("#baroutcome")
             .style("width", recovered_p)
             .text(currentData[0]["recovered_p"]+"%")
-		// drawWorldMap(".worldmap");
-		drawIndiaMap(".indiamap")
-		createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
-		createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
+            
+        //drawWorldMap(".worldmap");
+        drawIndiaMap(".indiamap");
+        createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
+        createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
         // drawBarchart(".dailydeathbar")
-		// drawLinechart(".dailydeathline")
-		drawTable(dailyDeathData, "#dailydeathstable")
-		drawTable(dailyTotalDeathData, "#totaldeathstable")
+// 		drawLinechart(".dailydeathline")
 		setTimeout(() => {	renderCard();	}, 1000);
+		$(".dailyDeaths .tablebtn").on("click", function(){
+            $("#dailydeathstable").css("display", "block")
+            $(".dailydeathbar").css("display", "none")
+            $(".dailyDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        $(".dailyDeaths .chartbtn").on("click", function(){
+            $("#dailydeathstable").css("display", "none")
+            $(".dailydeathbar").css("display", "block")
+            $(".dailyDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        
+        $(".totalDeaths .tablebtn").on("click", function(){
+            $("#totaldeathstable").css("display", "block")
+            $(".dailydeathline").css("display", "none")
+            $(".totalDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        $(".totalDeaths .chartbtn").on("click", function(){
+            $("#totaldeathstable").css("display", "none")
+            $(".dailydeathline").css("display", "block")
+            $(".totalDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        $(".allIndia").on("click", function(){
+            $('#statename').html('India');
+		animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
+        animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
+        animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
+});
+		drawTable(dailyDeathData,'#dailydeathstable')
+		drawTable(dailyTotalDeathData,'#totaldeathstable')
     </script>
 </body>
 </html>
