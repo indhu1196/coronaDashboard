@@ -25,7 +25,16 @@
 */
 function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type){
     // console.log("dropdowndata", dropdowndata);
-
+    if(type === "india"){
+        dropdowndata.unshift({
+            "S.No": "0",
+            stateId: "S00",
+            StateName: "All India",
+            totalIndianCases: indiaTotal[0]["totalIndians"],
+            Cured: indiaTotal[0]["totalCured"],
+            Death: indiaTotal[0]["totalDeaths"]
+        })
+    }
     var select = d3.select(selector)
     select.html(null);
       var options = select.selectAll('option')
@@ -42,8 +51,6 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
                 d3.keys(d).forEach(function(key) {
                     if(d[contentlabel]=="China"){
                         
-                        header.attr("selected", 'selected');
-                    }else if(d[contentlabel]=="Maharashtra"){
                         header.attr("selected", 'selected');
                     }
                 });
