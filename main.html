@@ -280,7 +280,7 @@
 					</div>
 					
 
-					<div class="indiamap"></div>
+					<div class="indiamap"><button class="allIndia">All India</button></div>
 					<select class="dropdownstate" onchange="showStateData()"></select>
 					<ul class="legend">
 						<!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
@@ -480,7 +480,7 @@
 
   gtag('config', 'UA-136297916-1');
 </script>
-    <script type='text/javascript'>
+  <script type='text/javascript'>
 		var defaultMapData = countrywisedata.filter(function(item){
             return item['countryId'] === "156" ;
         })
@@ -605,9 +605,16 @@
             $(".totalDeaths button").removeClass("active")
             $(this).addClass("active")
         });
+        $(".allIndia").on("click", function(){
+            $('#statename').html('India');
+		animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
+        animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
+        animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
+});
 		drawTable(dailyDeathData,'#dailydeathstable')
 		drawTable(dailyTotalDeathData,'#totaldeathstable')
     </script>
+
     	<script type="text/javascript" src="https://covid19.thefederal.com/jssocials/jssocials.min.js"></script>
 	<script>
         $("#share").jsSocials({
