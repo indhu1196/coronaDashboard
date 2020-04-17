@@ -1,3 +1,4 @@
+
 <!doctype html >
 <head>
     <title>The Federal coronavirus dashboard - A collection of useful data related to Coronavirus</title>
@@ -33,7 +34,7 @@
 
 </head>
 <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://thefederal.com/embed/corona-dashboard-master/css/style.css?v=1995327460280898643">
+	<link rel="stylesheet" href="https://thefederal.com/embed/corona-dashboard-master/css/style.css?v=1995327460280898652">
 	<link rel="stylesheet" href="https://thefederal.com/embed/corona-dashboard-master/css/bootstrap-fullscreen-select.css?v=343437">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link type="text/css" rel="stylesheet" href="https://covid19.thefederal.com/jssocials/jssocials.css" />
@@ -240,7 +241,7 @@
 			</div>
 			
 		</section>
-        <section class="indiadata-charts">
+		<section class="indiadata-charts">
 			<div>
 				<h1>India Confirmed cases</h1>
 				<figure class="highcharts-figure">
@@ -258,7 +259,7 @@
 			 </figure>
 			</div>
 		</section>
-        <section class="world-impact" id="world-impact">
+		<section class="world-impact" id="world-impact">
 			<h1>COVID-19 world impact</h1>
 			<p>Click on a country</p>
 			<div class="map-wrapper">
@@ -282,6 +283,44 @@
 			</div>
 			
 		</section>
+		<!-- <section class="dangerData">
+			<div class="totalandNew">
+				<figure>
+					<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset6.png">
+				</figure>
+				<div class="deathCounts">
+					<div class="topCounts">
+						<figure>
+							<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset4.png">
+						</figure>
+						<div class="countValue">
+							<h2>Total Deaths</h2>
+							<h1 id="countrytotaldeaths">3,136</h1>
+						</div>
+					</div>
+					<div class="downCounts">
+						<figure>
+							<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset11.png">
+						</figure>
+						<div class="countValue">
+							<h2>New Deaths</h2>
+							<h1 id="countrynewdeaths">+17</h1>
+						</div>
+					</div>
+				</div>
+			</div> 
+			
+			<div class="criticalData">
+				<div class="recoverCounts">
+					<h2>Total Recovered</h2>
+					<h1 id="countrytotalRecovered">60,104</h1>
+				</div>
+				<div class="criticalCounts">
+					<h2>Serious/critical</h2>
+					<h1 id="countrySerious">4,794</h1>
+				</div>
+			</div>
+		</section>-->
 		<section class="dailyDeaths" id="daily-deaths">
 			<h1>Global Daily Deaths</h1>
 			<div class="chartcontent">
@@ -437,7 +476,7 @@
     <script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
     <script src="https://thefederal.com/embed/corona-dashboard-master/js/loadData.js?v=1332020324749"></script>
     <script src="https://thefederal.com/embed/corona-dashboard-master/js/bootstrap-fullscreen-select.js?v=479985"></script>
-    <script src="https://thefederal.com/embed/corona-dashboard-master/js/functions.js?v=434347783455556468598"></script>
+    <script src="https://thefederal.com/embed/corona-dashboard-master/js/functions.js?v=434347783455556468599"></script>
      <script src="https://thefederal.com/embed/corona-dashboard-master/js/accordion.js?v=55544"></script>
     <script src="https://covid19.thefederal.com//js/indiamap.js?v=25534873788879745"></script>
     <!--<script src="https://thefederal.com/embed/corona-dashboard-master/js/barchart.js?v=3434"></script>-->
@@ -449,7 +488,7 @@
 	<script src="https://thefederal.com/embed/corona-dashboard-master/js/miniature.earth.js"></script>
 	<script src="https://thefederal.com/embed/corona-dashboard-master/js/accordion-table.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>	
 	<script src="https://thefederal.com/embed/corona-dashboard-master/js/chart1.js"></script>
     <script src="https://thefederal.com/embed/corona-dashboard-master/js/chart2.js"></script>
     <script src="https://thefederal.com/embed/corona-dashboard-master/js/indiadata.js"></script>
@@ -461,7 +500,7 @@
 
   gtag('config', 'UA-136297916-1');
 </script>
-  <script type='text/javascript'>
+    <script type='text/javascript'>
 		var defaultMapData = countrywisedata.filter(function(item){
             return item['countryId'] === "156" ;
         })
@@ -595,7 +634,6 @@
 		drawTable(dailyDeathData,'#dailydeathstable')
 		drawTable(dailyTotalDeathData,'#totaldeathstable')
     </script>
-
     	<script type="text/javascript" src="https://covid19.thefederal.com/jssocials/jssocials.min.js"></script>
 	<script>
         $("#share").jsSocials({
