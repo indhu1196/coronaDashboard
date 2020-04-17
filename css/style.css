@@ -1336,7 +1336,7 @@ fill: orange!important;
         .country{ margin-bottom: 15px;}
 
         .flexcontainer {
-            grid-template-columns: 100%;
+            grid-template-columns: 100%;display: flex;flex-direction: column-reverse;
         }
 	
 	.highcharts-exporting-group .highcharts-button:nth-child(2) {
@@ -1351,7 +1351,7 @@ fill: orange!important;
     }
     
 .allIndia {
-    display: block;
+    /*display: block;*/
     background: #000000;
     color: #fff;
     position: absolute;
