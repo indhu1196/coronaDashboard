@@ -148,7 +148,7 @@ $(document).ready(function() {
              },
          
              series: [{
-                 name: 'Deceased Cases',
+                 name: 'Daily Deaths',
                  data: dailydeceased
              }, ],
          
@@ -357,7 +357,7 @@ $(document).ready(function() {
              },
          
              series: [{
-                 name: 'Deceased Cases',
+                 name: 'Daily Deaths',
                  data: dailydeceased
              }, ],
          
@@ -426,7 +426,7 @@ $(document).ready(function() {
              },
          
              series: [{
-                 name: 'Deceased Cases',
+                 name: 'Total Deaths',
                  data: totaldeceased
              }, ],
          

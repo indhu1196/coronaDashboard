@@ -1,5 +1,6 @@
 function drawchart1(){
     $(document).ready(function() {
+        
         Highcharts.setOptions({
             lang: {
                 thousandsSep: ','

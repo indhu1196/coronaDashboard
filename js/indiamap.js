@@ -1,6 +1,6 @@
 function drawIndiaMap(selector){
     var width = 300, height = 332, scale = 580, center = [82.8, 23.4];
-    var source = "js/maps/india_2019.json";
+    var source = "https://thefederal.com/embed/corona-dashboard-master/js/maps/india_2019.json";
     var svg = d3.select(selector)
     .append("svg")
     .attr("class", "india map")
@@ -12,9 +12,12 @@ function drawIndiaMap(selector){
     //     "30": "#FEE5D9",
     // }
    
+    // var colorScale = d3.scaleThreshold()
+    // .domain([1, 180, 350, 530, 700, 890])
+    // .range(["#fde8de", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C"]);
     var colorScale = d3.scaleThreshold()
-    .domain([1, 180, 350, 530, 700, 890])
-    .range(["#fde8de", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C"]);
+    .domain([0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000])
+    .range(["#fff5f0"  ,"#fee0d2","#fcbba1" ,"#fc9272" ,"#fb6a4a" ,"#ef3b2c" ,"#cb181d" ,"#a50f15" ,"#67000d"]);
     // .range(d3.schemeReds[6]);
     var tool_tip = d3.tip()
         .attr("class", "d3-tipforline")

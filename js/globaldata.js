@@ -25,7 +25,7 @@
                         totalCases.reverse();
                         deathDate.reverse();
                             if(screen.width <= 767) {
-                                stepValue = { step: 10};
+                                stepValue = { step: 13};
                             } else {
                                 stepValue = { step: 5};  
                             }
@@ -49,7 +49,7 @@
                     totalDeaths.reverse();
                     totdeathDate.reverse();
                         if(screen.width <= 767) {
-                            stepValue = { step: 10};
+                            stepValue = { step: 13};
                         } else {
                             stepValue = { step: 5};  
                         }
