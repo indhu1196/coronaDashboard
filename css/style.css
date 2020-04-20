@@ -1076,25 +1076,38 @@ background: #f8f8f8;
 .highcharts-data-table tr:hover {
 background: #f1f7ff;
 }
-#totalDeath-container .highcharts-graph, #totalDeath-container .highcharts-label-box.highcharts-tooltip-box {
+#totalDeath-container .highcharts-graph, #totalDeath-container .highcharts-label-box.highcharts-tooltip-box, #dailydeceased-container .highcharts-graph, #dailydeceased-container .highcharts-label-box.highcharts-tooltip-box {
 stroke: #f00;
 }
 #totalDeath-container .highcharts-point, #totalDeath-container .highcharts-halo.highcharts-color-0,
-#totalDeath-container .highcharts-markers.highcharts-series-0.highcharts-line-series.highcharts-color-0.highcharts-tracker.highcharts-series-hover path {
+#totalDeath-container .highcharts-markers.highcharts-series-0.highcharts-line-series.highcharts-color-0.highcharts-tracker.highcharts-series-hover path, #dailydeceased-container .highcharts-point, #dailydeceased-container .highcharts-halo.highcharts-color-0,
+#dailydeceased-container .highcharts-markers.highcharts-series-0.highcharts-line-series.highcharts-color-0.highcharts-tracker.highcharts-series-hover path {
 fill: #f00;
 }
-#totalDeath-container .highcharts-label.highcharts-tooltip.highcharts-color-0  text tspan:nth-child(2) {
+#totalDeath-container .highcharts-label.highcharts-tooltip.highcharts-color-0  text tspan:nth-child(2), #dailydeceased-container .highcharts-label.highcharts-tooltip.highcharts-color-0  text tspan:nth-child(2) {
 fill: #f00!important;
 }
 #dailydeath-container .highcharts-graph, #dailydeath-container .highcharts-label-box.highcharts-tooltip-box {
-stroke: orange;
+stroke: #f00;
 }
 #dailydeath-container .highcharts-point, #dailydeath-container .highcharts-halo.highcharts-color-0,
 #dailydeath-container .highcharts-markers.highcharts-series-0.highcharts-line-series.highcharts-color-0.highcharts-tracker.highcharts-series-hover path {
-fill: orange;
+fill: #f00;
 }
 #dailydeath-container .highcharts-label.highcharts-tooltip.highcharts-color-0  text tspan:nth-child(2) {
-fill: orange!important;
+fill: #f00!important;
+}
+
+
+#dailyconfirmed-container .highcharts-graph, #dailyconfirmed-container .highcharts-label-box.highcharts-tooltip-box {
+stroke: #035add;
+}
+#dailyconfirmed-container .highcharts-point, #dailyconfirmed-container .highcharts-halo.highcharts-color-0,
+#dailyconfirmed-container .highcharts-markers.highcharts-series-0.highcharts-line-series.highcharts-color-0.highcharts-tracker.highcharts-series-hover path {
+fill: #035add;
+}
+#dailyconfirmed-container .highcharts-label.highcharts-tooltip.highcharts-color-0  text tspan:nth-child(2) {
+fill: #035add!important;
 }
 
 .map-wrapper1 {
