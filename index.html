@@ -69,11 +69,11 @@
     <div class="covidDash-wrapper">
 		<section class="dashboard-header" id="header">
 			<figure>
-				<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset2.png" alt="Covid" />
+				<img src="img/Asset2.png" alt="Covid" />
 			</figure>
 			<div class="dashboard-title">
 				<figure>
-					<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset1.png" alt="The Federal" />
+					<img src="img/Asset1.png" alt="The Federal" />
 				</figure>
 				<figcaption>Coronavirus <br/>dashboard</figcaption>
 				<p id="lastupdatedtime"></p>
@@ -97,7 +97,7 @@
 		<section class="deaths-recoverData">
 			<div class="deathdata">
 				<figure>
-					<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset4.png" alt="total death">
+					<img src="img/Asset4.png" alt="total death">
 				</figure>
 				<div class="deathCount">
 					<h2>Total Deaths</h2>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="recoverdata">
 				<figure>
-					<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset3.png" alt="total death">
+					<img src="img/Asset3.png" alt="total death">
 				</figure>
 				<div class="recoverCount respondpoints">
 					<h2>Total Recovered</h2>
@@ -146,7 +146,7 @@
                     </div>
                 </div>
 			</div>
-		</section>	
+		</section>
 		<section class="world-impact" id="india-impact">
 			<h1>COVID-19 India impact</h1>
 			<div class="flexcontainer">
@@ -168,7 +168,7 @@
 							</div>
 							<div class="stateDeaths">
 								<figure>
-									<img src="https://thefederal.com/embed/corona-dashboard-master/img/Asset6.png">
+									<img src="img/Asset6.png">
 								</figure>
 								<div class="contentcolumne">
 									<h2>Deaths</h2>
@@ -179,18 +179,20 @@
 					</div>
 					
 
-					<div class="indiamap"><button id="btn-for-india" style="background: #000000; color: #fff;position: absolute; right: 30%; top: 10%;"> All India</button></div>
+					<div class="indiamap"><button class="allIndia">All India</button></div>
 					<select class="dropdownstate" onchange="showStateData()"></select>
 					<ul class="legend">
-						<!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
-						<li><span style="background-color: #EEEEEE;"></span>0</li>
-						<li><span style="background-color: #fde8de;"></span>1-179</li>
-						<li><span style="background-color: #FDD5C3;"></span>180-349</li>
-						<li><span style="background-color: #FCA487;"></span>350-529</li>
-						<li><span style="background-color: #FA7254;"></span>530-699</li>
-						<li><span style="background-color: #E83A2E;"></span>700-889</li>
-						<li><span style="background-color: #BC171C;"></span>> 890</li>
-					</ul>
+                        <!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
+                        <li><span style="background-color: #fff5f0;"></span>0</li>
+                        <li><span style="background-color: #fee0d2;"></span>500</li>
+                        <li><span style="background-color: #fcbba1;"></span>1000</li>
+                        <li><span style="background-color: #fc9272;"></span>1500</li>
+                        <li><span style="background-color: #fb6a4a;"></span>2000</li>
+                        <li><span style="background-color: #ef3b2c;"></span>2500</li>
+                        <li><span style="background-color: #cb181d;"></span>3000</li>
+                        <li><span style="background-color: #a50f15;"></span>3500</li>
+                        <li><span style="background-color: #67000d;"></span>4000</li>
+                    </ul>
 					<!-- <figure class="highcharts-figure">
 						<div id="dailydeath-container"></div>
 					</figure> -->
@@ -219,7 +221,7 @@
 			 </figure>
 			</div>
 		</section>
-        <section class="world-impact" id="world-impact">
+		<section class="world-impact" id="world-impact">
 			<h1>COVID-19 world impact</h1>
 			<p>Click on a country</p>
 			<div class="map-wrapper">
@@ -247,32 +249,20 @@
 			<h1>Global Deaths</h1>
 			<div class="chartcontent">
 				<p>of Novel Coronavirus (2019-nCoV)</p>
-			<!--<div class="chartnav">
-					<button class="chartbtn active">Chart</button>
-					<button class="tablebtn">Table</button>
-				</div> -->
+				<!--<div class="chartnav">-->
+				<!--	<button class="chartbtn active">Chart</button>-->
+				<!--	<button class="tablebtn">Table</button>-->
+				<!--</div>-->
 			</div>
 			<!-- <div class="dailydeathbar"></div> -->
 			<figure class="highcharts-figure dailydeathbar">
+			    <button id="globaldaily" class="btn1 active">Daily</button>
+				<button id="globaltotal" class="btn1">Total</button>
 				<div id="dailydeath-container"></div>
 			</figure>
 			<!--<div class="table" id="dailydeathstable" style="display:none"></div>-->
 		</section>
-	<!--	<section class="totalDeaths" id="total-deaths">
-            <h1>Global Total Deaths</h1>
-			<div class="chartcontent">
-				<p>of Novel Coronavirus (2019-nCoV)</p>
-				<div class="chartnav">
-					<button class="chartbtn active">Chart</button>
-					<button class="tablebtn">Table</button>
-				</div>
-			</div>
-			<figure class="highcharts-figure dailydeathline">
-				<div id="totalDeath-container"></div>
-			</figure>
-			<div class="table" id="totaldeathstable" style="display:none"></div>
-		</section> -->
-		<section class="faqs" id="faqs">
+       	<section class="faqs" id="faqs">
 			<h1>FAQs</h1>
 			<p>The spreading fear of coronavirus and the increasing infection rate, taking the total number of positive cases in India to 115 (as of Monday), have raised more questions on its nature and ways to avoid or mitigate the pandemic. Here is a lowdown on the virus, how to avoid contracting it and seeking help in case of suspected infection.</p>
 			
