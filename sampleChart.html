@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <title>Change data from buttons</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<style>
+    .states-btn button {
+        /* background-color: #dddddd; */
+        color: #4c4c4c;
+        border: none;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-family: 'Rubik', sans-serif;
+        border-radius: 5px;
+        text-transform: uppercase;
+        margin-left: 10px;
+    }
+    .states-btn button.active {
+        background-color: #d4d2d2 !important;
+        color: #F00 !important;
+        outline: 0;
+    }
+    .states-btn #selectData {
+        background-color: #d4d2d2;
+        color: #000;
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-family: 'Rubik', sans-serif;
+        text-transform: uppercase;
+        margin-left: 10px;
+    }
+    .highcharts-button.highcharts-contextbutton {
+        display: none;
+    }
+    .highcharts-exporting-group .highcharts-button:nth-child(2) {
+        transform: translate(94% ,5px)!important;
+    }
+    .highcharts-exporting-group .highcharts-button:nth-child(3) {
+        transform: translate(84% ,5px)!important;
+    }
+    .highcharts-button-box {
+        height: 20px!important;
+        fill: #dddddd; 
+    }
+    .highcharts-button text {
+        color: #4c4c4c!important;
+        fill: #4c4c4c!important;
+    }
+    .highcharts-button.highcharts-button-hover text {
+        color: #ffffff!important;
+        fill: #ffffff!important;
+    }
+    .highcharts-button.highcharts-button-hover .highcharts-button-box {
+        fill: rgb(164, 1, 1);
+    }
+    .highcharts-button text {
+        transform: translateY(-2px);
+    }
+    .states-btn {
+        position: relative; left: 15%;
+    }
+    @media screen and (max-width: 767px) {
+        #selectData{
+            margin-top: 15px;
+        }
+        .states-btn {
+            left: 5%;
+        }
+        .highcharts-exporting-group .highcharts-button:nth-child(3) {
+            transform: translate(60% ,10px)!important;
+        }
+        .highcharts-exporting-group .highcharts-button:nth-child(2) {
+            transform: translate(85% ,10px)!important;
+        }
+    }
+</style>
+</head>
+<body style="max-width: 1040px; overflow: hidden;">
+    <div class="states-btn">
+        <button id="recovered" class="">Recovered</button>
+        <button id="confirmed" class="active">Confirmed</button>
+        <button id="deceased">Deceased</button>
+        <select id="selectData" style="display: inline; ">
+            <option value="tt" selected="selected">All India</option>
+            <option value="an">Andaman and Nicobar Islands</option>
+            <option value="ap">Andhra Pradesh</option>
+            <option value="ar">Arunachal Pradesh</option>
+            <option value="as">Assam</option>
+            <option value="br">Bihar</option>
+            <option value="ch">Chandigarh</option>
+            <option value="ct">Chattisgarh</option>
+            <option value="dd">Daman and Diu</option>
+            <option value="dl">Delhi</option>
+            <option value="dn">Dadra and Nagar Haveli</option>
+            <option value="ga">Goa</option>
+            <option value="gj">Gujarat</option>
+            <option value="hp">Himachal Pradesh</option>
+            <option value="hr">Haryana</option>
+            <option value="jh">Jharkhand</option>
+            <option value="jk">Jammu and Kashmir</option>
+            <option value="ka">Karnataka</option>
+            <option value="kl">Kerala</option>
+            <option value="la">Ladakh</option>
+            <option value="ld">Lakshadweep Islands</option>
+            <option value="mh">Maharashtra</option>
+            <option value="ml">Meghalaya</option>
+            <option value="mn">Manipur</option>
+            <option value="mp">Madhya Pradesh</option>
+            <option value="mz">Mizoram</option>
+            <option value="nl">Nagaland</option>
+            <option value="or">Odisha</option>
+            <option value="pb">Punjab</option>
+            <option value="py">Pondicherry</option>
+            <option value="rj">Rajasthan</option>
+            <option value="sk">Sikkim</option>
+            <option value="tg">Telangana</option>
+            <option value="tn">Tamil Nadu</option>
+            <option value="tr">Tripura</option>
+            <option value="up">Uttar Pradesh</option>
+            <option value="ut">Uttarakhand</option>
+            <option value="wb">West Bengal</option>
+        </select>
+    </div>
+<div id="container2" style=""></div>
+
+<script>
+$(function () {
+    var start = [];
+    var an= [], ap = [],ar = [],as = [],br = [],ch = [],ct = [],dd = [],dl = [],dn = [],ga = [],gj = [],hp = [],hr = [],jh = [],jk = [],ka = [],kl = [],la = [],ld = [],mh = [],ml = [],mn = [],mp = [],mz = [],nl = [],or = [],pb = [],py = [],rj = [],sk = [],tg = [],tn = [],tr = [], up = [],ut = [],wb = [] ;
+    var tt= [], statesDate = [], allIndiaData = [], arr = ["Confirmed","Recovered"];
+    var casedesc;
+    loadData("Confirmed",0);
+    jQuery('#recovered').click(function () {
+        loadData("Recovered",1);
+        $("#selectData").val('tt').trigger('change');
+        $(this).addClass("active");
+        $("#confirmed").removeClass("active");
+        $("#deceased").removeClass("active");
+    });
+	jQuery('#confirmed').click(function () {
+        loadData("Confirmed",1);
+         $("#selectData").val('tt').trigger('change');
+         $(this).addClass("active");
+        $("#recovered").removeClass("active");
+        $("#deceased").removeClass("active");
+    });
+	jQuery('#deceased').click(function () {
+        loadData("Deceased",1);
+         $("#selectData").val('tt').trigger('change');
+         $(this).addClass("active");
+        $("#confirmed").removeClass("active");
+        $("#recovered").removeClass("active");
+    });
+
+function loadData(filter,clicked) {
+     an= [], ap = [],ar = [],as = [],br = [],ch = [],ct = [],dd = [],dl = [],dn = [],ga = [],gj = [],hp = [],hr = [],jh = [],jk = [],ka = [],kl = [],la = [],ld = [],mh = [],ml = [],mn = [],mp = [],mz = [],nl = [],or = [],pb = [],py = [],rj = [],sk = [],tg = [],tn = [],tr = [], up = [],ut = [],wb = [] ;
+    tt= [], statesDate = [], allIndiaData = [];
+    $.ajax ({
+        'async': false,
+        'global': false,
+        'dataType': 'json',
+        'url': 'https://api.covid19india.org/states_daily.json',
+        'success': function(data) {
+                var result = data.states_daily;
+				var canAdd;
+                result.forEach(function(key,value) {
+				    canAdd = 0;
+					for (let [k1, v1] of Object.entries(key)) {
+					  if(k1== "status" && v1==filter){
+							canAdd = 1
+						}
+					}
+                    if(canAdd){
+                        // console.log(casedesc)
+                        an.push(parseInt(key["an"]));
+                        ap.push(parseInt(key["ap"]));
+                        ar.push(parseInt(key["ar"]));
+                        as.push(parseInt(key["as"]));
+                        br.push(parseInt(key["br"]));
+                        ch.push(parseInt(key["ch"]));
+                        ct.push(parseInt(key["ct"]));
+                        dd.push(parseInt(key["dd"]));
+                        dl.push(parseInt(key["dl"]));
+                        dn.push(parseInt(key["dn"]));
+                        ga.push(parseInt(key["ga"]));
+                        gj.push(parseInt(key["gj"]));
+                        hp.push(parseInt(key["hp"]));
+                        hr.push(parseInt(key["hr"]));
+                        jh.push(parseInt(key["jh"]));
+                        jk.push(parseInt(key["jk"]));
+                        ka.push(parseInt(key["ka"]));
+                        kl.push(parseInt(key["kl"]));
+                        la.push(parseInt(key["la"]));
+                        ld.push(parseInt(key["ld"]));
+                        mh.push(parseInt(key["mh"]));
+                        ml.push(parseInt(key["ml"]));
+                        mn.push(parseInt(key["mn"]));
+                        mp.push(parseInt(key["mp"]));
+                        mz.push(parseInt(key["mz"]));
+                        nl.push(parseInt(key["nl"]));
+                        or.push(parseInt(key["or"]));
+                        pb.push(parseInt(key["pb"]));
+                        py.push(parseInt(key["py"]));
+                        rj.push(parseInt(key["rj"]));
+                        sk.push(parseInt(key["sk"]));
+                        tg.push(parseInt(key["tg"]));
+                        tn.push(parseInt(key["tn"]));
+                        tr.push(parseInt(key["tr"]));
+                        allIndiaData.push(parseInt(key["tt"]));
+                        tt.push(parseInt(key["tt"]));
+                        up.push(parseInt(key["up"]));
+                        ut.push(parseInt(key["ut"]));
+                        wb.push(parseInt(key["wb"]));
+                        statesDate.push(key["date"]);
+                    }
+                });
+                    //console.log("TN DATA"+JSON.stringify(tn));
+                    if(screen.width <= 767) {
+                        stepValue = { step: 10};
+                    } else {
+                        stepValue = { step: 5};  
+                    }
+            }
+			
+    });
+	if(clicked) {
+        chart2.series[0].setData(allIndiaData);
+	}
+}
+    var chart2 = new Highcharts.Chart({
+        exporting: {
+            buttons: {
+                customButton: {
+                    text: 'Linear',
+                    onclick: function() {
+                        this.yAxis[0].update({
+                            type: 'linear'
+                        });
+                    }
+                },
+                customButton2: {
+                    text: 'Logarithmic',
+                    onclick: function() {
+                        this.yAxis[0].update({
+                            type: 'logarithmic'
+                        });
+                    }
+                },
+            }
+        },
+        chart: {
+            renderTo: 'container2',
+            events: {
+            load: function () {
+                var label = this.renderer.label('Chart loaded', 100, 120)
+                    .attr({
+                        fill: Highcharts.getOptions().colors[0],
+                        padding: 10,
+                        r: 5,
+                        zIndex: 8
+                    })
+                    .css({
+                        color: '#FFFFFF'
+                    })
+                    .add();
+
+                setTimeout(function () {
+                    label.fadeOut();
+                }, 1000);
+            }
+        }
+        },
+        title: {
+            text: ' '
+        },
+        credits: {enabled: false},
+        xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 400,
+        categories : statesDate,
+        labels:  stepValue
+        },
+        series: [{
+            data: allIndiaData,
+            // name: 'Confirmed Cases'
+        }]
+    });
+    // The select action
+    $("#selectData").on('change', function(){
+        var selVal = $("#selectData").val();
+        if(selVal == "an" || selVal == '') {
+            chart2.series[0].setData(an);
+        }
+        else if (selVal == "ap") {
+            chart2.series[0].setData(ap);
+        }
+        else if (selVal == "ar") {
+            chart2.series[0].setData(ar);
+        }
+        else if (selVal == "as") {
+            chart2.series[0].setData(as);
+        }
+        else if (selVal == "br") {
+            chart2.series[0].setData(br);
+        }
+        else if (selVal == "ch") {
+            chart2.series[0].setData(ch);
+        }
+        else if (selVal == "ct") {
+            chart2.series[0].setData(ct);
+        }
+        else if (selVal == "dd") {
+            chart2.series[0].setData(dd);
+        }
+        else if (selVal == "dl") {
+            chart2.series[0].setData(dl);
+        }
+        else if (selVal == "dn") {
+            chart2.series[0].setData(dn);
+        }
+        else if (selVal == "ga") {
+            chart2.series[0].setData(ga);
+        }
+        else if (selVal == "gj") {
+            chart2.series[0].setData(gj);
+        }
+        else if (selVal == "hp") {
+            chart2.series[0].setData(hp);
+        }
+        else if (selVal == "hr") {
+            chart2.series[0].setData(hr);
+        }
+        else if (selVal == "jh") {
+            chart2.series[0].setData(jh);
+        }
+        else if (selVal == "jk") {
+            chart2.series[0].setData(jk);
+        }
+        else if (selVal == "ka") {
+            chart2.series[0].setData(ka);
+        }
+        else if (selVal == "kl") {
+            chart2.series[0].setData(kl);
+        }
+        else if (selVal == "la") {
+            chart2.series[0].setData(la);
+        }
+        else if (selVal == "ld") {
+            chart2.series[0].setData(ld);
+        }
+        else if (selVal == "mh") {
+            chart2.series[0].setData(mh);
+        }
+        else if (selVal == "ml") {
+            chart2.series[0].setData(ml);
+        }
+        else if (selVal == "mn") {
+            chart2.series[0].setData(mn);
+        }
+        else if (selVal == "mp") {
+            chart2.series[0].setData(mp);
+        }
+        else if (selVal == "mz") {
+            chart2.series[0].setData(mz);
+        }
+        else if (selVal == "nl") {
+            chart2.series[0].setData(nl);
+        }
+        else if (selVal == "or") {
+            chart2.series[0].setData(or);
+        }
+        else if (selVal == "pb") {
+            chart2.series[0].setData(pb);
+        }
+        else if (selVal == "py") {
+            chart2.series[0].setData(py);
+        }
+        else if (selVal == "rj") {
+            chart2.series[0].setData(rj);
+        }
+        else if (selVal == "sk") {
+            chart2.series[0].setData(sk);
+        }
+        else if (selVal == "tg") {
+            chart2.series[0].setData(tg);
+        }
+        else if (selVal == "tn") {
+            chart2.series[0].setData(tn);
+        }
+        else if (selVal == "tr") {
+            chart2.series[0].setData(tr);
+        }
+        else if (selVal == "tt") {
+            chart2.series[0].setData(tt);
+        }
+        else if (selVal == "up") {
+            chart2.series[0].setData(up);
+        }
+        else if (selVal == "ut") {
+            chart2.series[0].setData(ut);
+        }
+        else if (selVal == "wb") {
+            chart2.series[0].setData(wb);
+        }
+    });
+
+    
+
+});
+</script>
+
+</body>
+</html>
