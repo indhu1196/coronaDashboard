@@ -204,7 +204,7 @@
 			
 		</section>
 		<section class="indiadata-charts">
-			<div>
+<!-- 			<div>
 				<h1>India Confirmed cases</h1>
 				<figure class="highcharts-figure">
 					<button id="dailyconfirmed" class="btn1 active">Daily</button>
@@ -219,7 +219,54 @@
 			   <button id="totaldeceased" class="btn2">Total</button>
 			   <div id="dailydeceased-container"></div>
 			 </figure>
-			</div> 
+			</div> -->
+			<h1>India Statistics</h1>
+			<div class="states-btn">
+        <button id="recovered" class="">Recovered</button>
+        <button id="confirmed" class="active">Confirmed</button>
+        <button id="deceased">Deceased</button>
+        <select id="selectData" style="display: inline; ">
+            <option value="tt" selected="selected">All India</option>
+            <option value="an">Andaman and Nicobar Islands</option>
+            <option value="ap">Andhra Pradesh</option>
+            <option value="ar">Arunachal Pradesh</option>
+            <option value="as">Assam</option>
+            <option value="br">Bihar</option>
+            <option value="ch">Chandigarh</option>
+            <option value="ct">Chattisgarh</option>
+            <option value="dd">Daman and Diu</option>
+            <option value="dl">Delhi</option>
+            <option value="dn">Dadra and Nagar Haveli</option>
+            <option value="ga">Goa</option>
+            <option value="gj">Gujarat</option>
+            <option value="hp">Himachal Pradesh</option>
+            <option value="hr">Haryana</option>
+            <option value="jh">Jharkhand</option>
+            <option value="jk">Jammu and Kashmir</option>
+            <option value="ka">Karnataka</option>
+            <option value="kl">Kerala</option>
+            <option value="la">Ladakh</option>
+            <option value="ld">Lakshadweep Islands</option>
+            <option value="mh">Maharashtra</option>
+            <option value="ml">Meghalaya</option>
+            <option value="mn">Manipur</option>
+            <option value="mp">Madhya Pradesh</option>
+            <option value="mz">Mizoram</option>
+            <option value="nl">Nagaland</option>
+            <option value="or">Odisha</option>
+            <option value="pb">Punjab</option>
+            <option value="py">Pondicherry</option>
+            <option value="rj">Rajasthan</option>
+            <option value="sk">Sikkim</option>
+            <option value="tg">Telangana</option>
+            <option value="tn">Tamil Nadu</option>
+            <option value="tr">Tripura</option>
+            <option value="up">Uttar Pradesh</option>
+            <option value="ut">Uttarakhand</option>
+            <option value="wb">West Bengal</option>
+        </select>
+    </div>
+<div id="container2"></div>
 		</section>
 		<section class="world-impact" id="world-impact">
 			<h1>COVID-19 world impact</h1>
@@ -395,12 +442,13 @@
 	<script src="js/accordion-table.js"></script>
     <script src="js/barchart.js"></script>
 	<script src="js/linechart.js"></script>
-	<script src="js/indiadata.js"></script>
+<!-- 	<script src="js/indiadata.js"></script> -->
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
     <script src="js/chart1.js"></script>
 
-	<!--<script src="js/chart2.js"></script>-->
+	<script src="js/chart2.js"></script>
 <script src="js/globaldata.js"></script>
     
     <script src="js/map.js?v=13320205555"></script>
