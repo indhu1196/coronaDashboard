@@ -1352,28 +1352,20 @@ fill: #035add!important;
             grid-template-columns: 100%;display: flex;flex-direction: column-reverse;
         }
 	
-	.highcharts-exporting-group .highcharts-button:nth-child(2) {
-                transform: translate(310px ,5px)!important;
+	 .highcharts-exporting-group .highcharts-button:nth-child(2) {
+                transform: translate(293px ,5px)!important;
             }
-            .highcharts-exporting-group .highcharts-button:nth-child(3) {
-                transform: translate(220px ,5px)!important;
+           .highcharts-exporting-group .highcharts-button:nth-child(3) {
+                transform: translate(210px ,5px)!important;
             }
             .allIndia {
                 display: none;
             }
-	#selectData{
-            margin: 10px 0 20px 0;
+       #selectData{
+            margin: 10px 0 20px 0 !important;
             width: 100%;
         }
-        .states-btn {
-            left: 5%;
-        }
-        #container2 .highcharts-exporting-group .highcharts-button:nth-child(3) {
-            transform: translate(60% ,10px)!important;
-        }
-        #container2 .highcharts-exporting-group .highcharts-button:nth-child(2) {
-            transform: translate(85% ,10px)!important;
-        }
+        
     }
     
 .allIndia {
@@ -1420,12 +1412,6 @@ fill: #035add!important;
     #container2 .highcharts-button.highcharts-contextbutton {
         display: none;
     }
-    #container2 .highcharts-exporting-group .highcharts-button:nth-child(2) {
-        transform: translate(94% ,5px)!important;
-    }
-    #container2 .highcharts-exporting-group .highcharts-button:nth-child(3) {
-        transform: translate(84% ,5px)!important;
-    }
     #container2 .highcharts-button-box {
         height: 20px!important;
         fill: #dddddd; 
@@ -1445,5 +1431,8 @@ fill: #035add!important;
         transform: translateY(-2px);
     }
     .states-btn {
-        margin: 20px 28px;
+        margin: 20px 0;
+    }
+    .states-btn button:nth-child(1) {
+        margin-left: 0;
     }
