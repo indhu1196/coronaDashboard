@@ -130,7 +130,7 @@
             <option value="wb">West Bengal</option>
         </select>
     </div>
-<div id="container2" style=""></div>
+<div id="container2"></div>
 
 <script>
 $(function () {
@@ -144,7 +144,8 @@ $(function () {
         var selVal = $("#selectData").val();
         $("#selectData").val(selVal).trigger('change');
         chart2.series[0].update({
-            name: 'Recovered cases'
+            name: 'Recovered cases',
+            color: '#0bab02'
         });
         $(this).addClass("active");
         $("#confirmed").removeClass("active");
@@ -158,7 +159,8 @@ $(function () {
         $("#recovered").removeClass("active");
         $("#deceased").removeClass("active");
         chart2.series[0].update({
-            name: 'Confirmed cases'
+            name: 'Confirmed cases',
+            color: '#035add'
         });
     });
 	jQuery('#deceased').click(function () {
@@ -169,7 +171,8 @@ $(function () {
         $("#confirmed").removeClass("active");
         $("#recovered").removeClass("active");
         chart2.series[0].update({
-            name: 'Deaths'
+            name: 'Deaths',
+            color: '#f00'
         });
     });
     
@@ -248,6 +251,19 @@ function loadData(filter,clicked) {
     //     chart2.series[0].setData(allIndiaData);
 	// }
 }
+
+Highcharts.Series.prototype.pointClass.prototype.isValid = function() {
+  var isLogCorrect = this.series.yAxis.isLog ? this.y > 0 : true,
+    isValid = this.x !== null && Highcharts.isNumber(this.y, true) && isLogCorrect;
+
+  return isValid;
+};
+
+Highcharts.addEvent(Highcharts.Series, 'afterTranslate', function() {
+  Highcharts.each(this.points, function(point) {
+    point.isNull = !point.isValid();
+  })
+});
     var chart2 = new Highcharts.Chart({
         exporting: {
             buttons: {
@@ -284,7 +300,8 @@ function loadData(filter,clicked) {
         },
         series: [{
             data: allIndiaData,
-            name: 'Confirmed Cases'
+            name: 'Confirmed Cases',
+            color: '#035add'
         }]
     });
     // The select action
