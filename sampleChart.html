@@ -141,26 +141,38 @@ $(function () {
     loadData("Confirmed",0);
     jQuery('#recovered').click(function () {
         loadData("Recovered",1);
-        $("#selectData").val('tt').trigger('change');
+        var selVal = $("#selectData").val();
+        $("#selectData").val(selVal).trigger('change');
+        chart2.series[0].update({
+            name: 'Recovered cases'
+        });
         $(this).addClass("active");
         $("#confirmed").removeClass("active");
         $("#deceased").removeClass("active");
     });
 	jQuery('#confirmed').click(function () {
         loadData("Confirmed",1);
-         $("#selectData").val('tt').trigger('change');
-         $(this).addClass("active");
+        var selVal = $("#selectData").val();
+        $("#selectData").val(selVal).trigger('change');
+        $(this).addClass("active");
         $("#recovered").removeClass("active");
         $("#deceased").removeClass("active");
+        chart2.series[0].update({
+            name: 'Confirmed cases'
+        });
     });
 	jQuery('#deceased').click(function () {
         loadData("Deceased",1);
-         $("#selectData").val('tt').trigger('change');
+        var selVal = $("#selectData").val();
+        $("#selectData").val(selVal).trigger('change');
          $(this).addClass("active");
         $("#confirmed").removeClass("active");
         $("#recovered").removeClass("active");
+        chart2.series[0].update({
+            name: 'Deaths'
+        });
     });
-
+    
 function loadData(filter,clicked) {
      an= [], ap = [],ar = [],as = [],br = [],ch = [],ct = [],dd = [],dl = [],dn = [],ga = [],gj = [],hp = [],hr = [],jh = [],jk = [],ka = [],kl = [],la = [],ld = [],mh = [],ml = [],mn = [],mp = [],mz = [],nl = [],or = [],pb = [],py = [],rj = [],sk = [],tg = [],tn = [],tr = [], up = [],ut = [],wb = [] ;
     tt= [], statesDate = [], allIndiaData = [];
@@ -232,9 +244,9 @@ function loadData(filter,clicked) {
             }
 			
     });
-	if(clicked) {
-        chart2.series[0].setData(allIndiaData);
-	}
+	// if(clicked) {
+    //     chart2.series[0].setData(allIndiaData);
+	// }
 }
     var chart2 = new Highcharts.Chart({
         exporting: {
@@ -258,26 +270,7 @@ function loadData(filter,clicked) {
             }
         },
         chart: {
-            renderTo: 'container2',
-            events: {
-            load: function () {
-                var label = this.renderer.label('Chart loaded', 100, 120)
-                    .attr({
-                        fill: Highcharts.getOptions().colors[0],
-                        padding: 10,
-                        r: 5,
-                        zIndex: 8
-                    })
-                    .css({
-                        color: '#FFFFFF'
-                    })
-                    .add();
-
-                setTimeout(function () {
-                    label.fadeOut();
-                }, 1000);
-            }
-        }
+            renderTo: 'container2'
         },
         title: {
             text: ' '
@@ -291,7 +284,7 @@ function loadData(filter,clicked) {
         },
         series: [{
             data: allIndiaData,
-            // name: 'Confirmed Cases'
+            name: 'Confirmed Cases'
         }]
     });
     // The select action
@@ -414,7 +407,6 @@ function loadData(filter,clicked) {
     });
 
     
-
 });
 </script>
 
