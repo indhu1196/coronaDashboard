@@ -1,9 +1,8 @@
-        var totalconfirmed = [];
-        var totaldeaths = [];
-        var totalrecovered = [];
-        var totaldeceased = [];
+        var totalconf = [];
+        var totaldea = [];
+        var totalrec = [];
         var resDate = [];
-        $(function() {
+        jQuery(document).ready(function() {
             jQuery("#totrec").click(function(){
                 chart2.series[0].update({
                     name: 'Recovered cases',
@@ -41,12 +40,12 @@
                      var result = data.cases_time_series;
                      console.log(result)
                      result.forEach(function(key,value) {
-                        totalrecovered.push(parseInt(key["totalrecovered"]));
-                         totalconfirmed.push(parseInt(key["totalconfirmed"]));
-                         totaldeceased.push(parseInt(key["totaldeceased"]));
+                        totalrec.push(parseInt(key["totalrecovered"]));
+                         totalconf.push(parseInt(key["totalconfirmed"]));
+                         totaldea.push(parseInt(key["totaldeceased"]));
                              resDate.push(key["date"].slice(0, 6));
                          });
-                         console.log(totalconfirmed);
+                         console.log(totalconf);
                          if(screen.width <= 767) {
                              stepValue = { step: 10};
                          } else {
@@ -63,54 +62,55 @@
                 return isValid;
                 };
 
-                Highcharts.addEvent(Highcharts.Series, 'afterTranslate', function() {
+            Highcharts.addEvent(Highcharts.Series, 'afterTranslate', function() {
                 Highcharts.each(this.points, function(point) {
                     point.isNull = !point.isValid();
                 })
             });
 
             var chart2 = new Highcharts.Chart({
-        exporting: {
-            buttons: {
-                customButton: {
-                    text: 'Linear',
-                    onclick: function() {
-                        this.yAxis[0].update({
-                            type: 'linear'
-                        });
+                exporting: {
+                    buttons: {
+                        customButton: {
+                            text: 'Linear',
+                            onclick: function() {
+                                this.yAxis[0].update({
+                                    type: 'linear'
+                                });
+                            }
+                        },
+                        customButton2: {
+                            text: 'Logarithmic',
+                            onclick: function() {
+                                this.yAxis[0].update({
+                                    type: 'logarithmic'
+                                });
+                            }
+                        },
                     }
                 },
-                customButton2: {
-                    text: 'Logarithmic',
-                    onclick: function() {
-                        this.yAxis[0].update({
-                            type: 'logarithmic'
-                        });
-                    }
+                chart: {
+                    renderTo: 'indiastats'
                 },
-            }
-        },
-        chart: {
-            renderTo: 'indiastats'
-        },
-        title: {
-            text: ' '
-        },
-        credits: {enabled: false},
-        xAxis: {
-        type: 'datetime',
-        tickPixelInterval: 400,
-        categories : resDate,
-        labels:  stepValue
-        },
-        series: [{
-            data: totalconfirmed,
-            name: 'Confirmed Cases',
-            color: '#035add'
-        }]
-    });
+                title: {
+                    text: ' '
+                },
+                credits: {enabled: false},
+                xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 400,
+                categories : resDate,
+                labels:  stepValue
+                },
+                series: [{
+                    data: totalconf,
+                    name: 'Confirmed Cases',
+                    color: '#035add'
+                }]
+            });
         })
 
+        
 
 // $(document).ready(function() {
 //             Highcharts.setOptions({
