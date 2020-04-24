@@ -1,4 +1,3 @@
-<script>
         var totalconfirmed = [];
         var totaldeaths = [];
         var totalrecovered = [];
