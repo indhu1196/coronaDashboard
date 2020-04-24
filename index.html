@@ -1,594 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
-	<link rel="stylesheet" href="css/style.css">
-	<!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
-	<link rel="stylesheet" href="css/bootstrap-fullscreen-select.css?v=343434">
-	<style>
-		/* .dailydeathline{
-			position: relative;
-		}
-		.linetooltip{
-			position: absolute;
-		} */
-
-		.d3-tipforline {
-			line-height: 1;
-			padding: 2px 6px;
-			background: rgba(59, 59, 59, 0.9);
-			font-family: 'Rubik', sans-serif;
-			color: #fff;
-			border-radius: 4px;
-			font-size: 16px;
-			}
-
-			.d3-tipforline p{
-				margin: 0;
-				font-family: 'Rubik', sans-serif;
-			}
-			
-			.d3-tipforline p:nth-child(1){
-				font-weight: bold;
-				margin: 5px 0 5px 0;
-			}
-			.d3-tipforline p:nth-child(2){
-				margin: 0px 0 5px 0;
-			}
-		
-			/* Creates a small triangle extender for the tooltip */
-			.d3-tipforline:after {
-			box-sizing: border-box;
-			display: inline;
-			font-size: 16px;
-			width: 100%;
-			line-height: 1;
-			color: rgba(59, 59, 59, 0.9);
-			content: "\25BC";
-			position: absolute;
-			text-align: center;
-			}
-		
-			/* Style northward tooltips specifically */
-			.d3-tipforline.n:after {
-			margin: -2px 0 0 0;
-			top: 100%;
-			left: 0;
-			}
-	</style>
-</head>
-
-<body>
-    <!-- <div class="tfcontainer">
-        <div class="worldmap"></div>
-    </div> -->
-    <div class="covidDash-wrapper">
-		<section class="dashboard-header" id="header">
-			<figure>
-				<img src="img/Asset2.png" alt="Covid" />
-			</figure>
-			<div class="dashboard-title">
-				<figure>
-					<img src="img/Asset1.png" alt="The Federal" />
-				</figure>
-				<figcaption>Coronavirus <br/>dashboard</figcaption>
-				<p id="lastupdatedtime"></p>
-			</div>
-		</section>
-		<nav class="anchor-nav">
-			<ul>
-				<li><a href="https://covid19.thefederal.com/" style="background-color: #e20513;" target="_blank">Covid-19 Home</a></li>
-				<li><a href="#global">Global</a></li>
-				<li><a href="#world-impact">World Impact</a></li>
-				<li><a href="#india-impact">India Impact</a></li>
-				<li><a href="#daily-deaths">Daily Deaths</a></li>
-				<li><a href="#total-deaths">Total Deaths</a></li>
-				<li><a href="#faqs">FAQs</a></li>			
-			</ul>
-		</nav>
-		<section class="total-affected points" id="global">
-			<h1 id="totAffected" class="loading"></h1>
-			<p>TOTAL AFFECTED PERSONS</p>
-		</section>
-		<section class="deaths-recoverData">
-			<div class="deathdata">
-				<figure>
-					<img src="img/Asset4.png" alt="total death">
-				</figure>
-				<div class="deathCount">
-					<h2>Total Deaths</h2>
-					<h1 id="totDeath" class="loading points"></h1>
-				</div>
-			</div>
-			<div class="recoverdata">
-				<figure>
-					<img src="img/Asset3.png" alt="total death">
-				</figure>
-				<div class="recoverCount respondpoints">
-					<h2>Total Recovered</h2>
-					<h1 id="totRecovered" class="loading"></h1>
-				</div>
-			</div>
-		</section>
-		<section class="barchart">
-			<div class="left-chart">
-				 <div class="horstackchart">
-                     <div class="bar100">
-                         <div id="barmild"></div>
-                         <div id="barcritical"></div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+      <!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
+      <link rel="stylesheet" href="css/bootstrap-fullscreen-select.css?v=343434">
+      <style>
+         /* .dailydeathline{
+         position: relative;
+         }
+         .linetooltip{
+         position: absolute;
+         } */
+         .d3-tipforline {
+         line-height: 1;
+         padding: 2px 6px;
+         background: rgba(59, 59, 59, 0.9);
+         font-family: 'Rubik', sans-serif;
+         color: #fff;
+         border-radius: 4px;
+         font-size: 16px;
+         }
+         .d3-tipforline p{
+         margin: 0;
+         font-family: 'Rubik', sans-serif;
+         }
+         .d3-tipforline p:nth-child(1){
+         font-weight: bold;
+         margin: 5px 0 5px 0;
+         }
+         .d3-tipforline p:nth-child(2){
+         margin: 0px 0 5px 0;
+         }
+         /* Creates a small triangle extender for the tooltip */
+         .d3-tipforline:after {
+         box-sizing: border-box;
+         display: inline;
+         font-size: 16px;
+         width: 100%;
+         line-height: 1;
+         color: rgba(59, 59, 59, 0.9);
+         content: "\25BC";
+         position: absolute;
+         text-align: center;
+         }
+         /* Style northward tooltips specifically */
+         .d3-tipforline.n:after {
+         margin: -2px 0 0 0;
+         top: 100%;
+         left: 0;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- <div class="tfcontainer">
+         <div class="worldmap"></div>
+         </div> -->
+      <div class="covidDash-wrapper">
+         <section class="dashboard-header" id="header">
+            <figure>
+               <img src="img/Asset2.png" alt="Covid" />
+            </figure>
+            <div class="dashboard-title">
+               <figure>
+                  <img src="img/Asset1.png" alt="The Federal" />
+               </figure>
+               <figcaption>Coronavirus <br/>dashboard</figcaption>
+               <p id="lastupdatedtime"></p>
+            </div>
+         </section>
+         <nav class="anchor-nav">
+            <ul>
+               <li><a href="https://covid19.thefederal.com/" style="background-color: #e20513;" target="_blank">Covid-19 Home</a></li>
+               <li><a href="#global">Global</a></li>
+               <li><a href="#world-impact">World Impact</a></li>
+               <li><a href="#india-impact">India Impact</a></li>
+               <li><a href="#daily-deaths">Daily Deaths</a></li>
+               <li><a href="#total-deaths">Total Deaths</a></li>
+               <li><a href="#faqs">FAQs</a></li>
+            </ul>
+         </nav>
+         <section class="total-affected points" id="global">
+            <h1 id="totAffected" class="loading"></h1>
+            <p>TOTAL AFFECTED PERSONS</p>
+         </section>
+         <section class="deaths-recoverData">
+            <div class="deathdata">
+               <figure>
+                  <img src="img/Asset4.png" alt="total death">
+               </figure>
+               <div class="deathCount">
+                  <h2>Total Deaths</h2>
+                  <h1 id="totDeath" class="loading points"></h1>
+               </div>
+            </div>
+            <div class="recoverdata">
+               <figure>
+                  <img src="img/Asset3.png" alt="total death">
+               </figure>
+               <div class="recoverCount respondpoints">
+                  <h2>Total Recovered</h2>
+                  <h1 id="totRecovered" class="loading"></h1>
+               </div>
+            </div>
+         </section>
+         <section class="barchart">
+            <div class="left-chart">
+               <div class="horstackchart">
+                  <div class="bar100">
+                     <div id="barmild"></div>
+                     <div id="barcritical"></div>
+                  </div>
+               </div>
+               <div class="totalData">
+                  <div class="currentlyInfected points">
+                     <h2>Currently infected</h2>
+                     <h1 id="currInfected">47,524</h1>
+                  </div>
+                  <div class="mildCondition">
+                     <h2>Mild condition</h2>
+                     <h1 id="currMild">41,736</h1>
+                  </div>
+                  <div class="criticalCondition">
+                     <h2>Critical condition</h2>
+                     <h1 id="currCritical">5,788</h1>
+                  </div>
+               </div>
+            </div>
+            <div class="right-chart greypoints" >
+               <h1>Cases with <br />outcome</h1>
+               <p id="outcome-cases">68,722</p>
+               <div class="horstackchart">
+                  <div class="bar100">
+                     <div id="baroutcome"></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="world-impact" id="india-impact">
+            <h1>COVID-19 India impact</h1>
+            <div class="flexcontainer">
+               <div id="myacctable"></div>
+               <div class="indian-map-section">
+                  <p>Click on a state</p>
+                  <div class="indiaData">
+                     <div class="country">
+                        <h1 id="statename">China</h1>
                      </div>
-                 </div>
-				 <div class="totalData">
-				 	<div class="currentlyInfected points">
-				 		<h2>Currently infected</h2>
-				 		<h1 id="currInfected">47,524</h1>
-				 	</div>
-				 	<div class="mildCondition">
-				 		<h2>Mild condition</h2>
-				 		<h1 id="currMild">41,736</h1>
-				 	</div>
-				 	<div class="criticalCondition">
-				 		<h2>Critical condition</h2>
-				 		<h1 id="currCritical">5,788</h1>
-				 	</div>
-				 </div>
-			</div>
-			<div class="right-chart greypoints" >
-				<h1>Cases with <br />outcome</h1>
-				<p id="outcome-cases">68,722</p>
-				<div class="horstackchart">
-                    <div class="bar100">
-                        <div id="baroutcome"></div>
-                    </div>
-                </div>
-			</div>
-		</section>
-		<section class="world-impact" id="india-impact">
-			<h1>COVID-19 India impact</h1>
-			<div class="flexcontainer">
-				<div id="myacctable"></div>
-				<div class="indian-map-section">
-					<p>Click on a state</p>
-					<div class="indiaData">
-						<div class="country">
-							<h1 id="statename">China</h1>
-						</div>
-						<div class="otherdata">
-							<div class="totCases points">
-								<h2>Confirmed<br>cases</h2>
-								<h1 id="stateConfIndians">80,757</h1>
-							</div>
-							<div class="newCases respondpoints">
-								<h2>Cured /<br>Discharged</h2>
-								<h1 id="stateCured">22</h1>
-							</div>
-							<div class="stateDeaths">
-								<figure>
-									<img src="img/Asset6.png">
-								</figure>
-								<div class="contentcolumne">
-									<h2>Deaths</h2>
-									<h1 id="stateDead">22</h1>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-
-					<div class="indiamap"><button class="allIndia">All India</button></div>
-					<select class="dropdownstate" onchange="showStateData()"></select>
-					<ul class="legend">
-                        <!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
-                        <li><span style="background-color: #fff5f0;"></span>0</li>
-                        <li><span style="background-color: #fee0d2;"></span>500</li>
-                        <li><span style="background-color: #fcbba1;"></span>1000</li>
-                        <li><span style="background-color: #fc9272;"></span>1500</li>
-                        <li><span style="background-color: #fb6a4a;"></span>2000</li>
-                        <li><span style="background-color: #ef3b2c;"></span>2500</li>
-                        <li><span style="background-color: #cb181d;"></span>3000</li>
-                        <li><span style="background-color: #a50f15;"></span>3500</li>
-                        <li><span style="background-color: #67000d;"></span>4000</li>
-                    </ul>
-					<!-- <figure class="highcharts-figure">
-						<div id="dailydeath-container"></div>
-					</figure> -->
-					<!-- <figure class="highcharts-figure">
-						<div id="totalDeath-container"></div>
-					</figure> -->
-				</div>
-			</div>
-			
-		</section>
-		<section class="indiadata-charts">
-<!-- 			<div>
-				<h1>India Confirmed cases</h1>
-				<figure class="highcharts-figure">
-					<button id="dailyconfirmed" class="btn1 active">Daily</button>
-					<button id="totalconfirmed" class="btn1">Total</button>
-					<div id="dailyconfirmed-container"></div>
-				</figure>
-			</div>
-			<div>
-			 <h1>India Deaths</h1>
-			 <figure class="highcharts-figure">
-			   <button id="dailydeceased" class="btn2 active">Daily</button>
-			   <button id="totaldeceased" class="btn2">Total</button>
-			   <div id="dailydeceased-container"></div>
-			 </figure>
-			</div> -->
-			<h1>India Statistics</h1>
-			<div class="states-btn">
-        <button id="recovered" class="">Recovered</button>
-        <button id="confirmed" class="active">Confirmed</button>
-        <button id="deceased">Deceased</button>
-        <select id="selectData" style="display: inline; ">
-            <option value="tt" selected="selected">All India</option>
-            <option value="an">Andaman and Nicobar Islands</option>
-            <option value="ap">Andhra Pradesh</option>
-            <option value="ar">Arunachal Pradesh</option>
-            <option value="as">Assam</option>
-            <option value="br">Bihar</option>
-            <option value="ch">Chandigarh</option>
-            <option value="ct">Chattisgarh</option>
-            <option value="dd">Daman and Diu</option>
-            <option value="dl">Delhi</option>
-            <option value="dn">Dadra and Nagar Haveli</option>
-            <option value="ga">Goa</option>
-            <option value="gj">Gujarat</option>
-            <option value="hp">Himachal Pradesh</option>
-            <option value="hr">Haryana</option>
-            <option value="jh">Jharkhand</option>
-            <option value="jk">Jammu and Kashmir</option>
-            <option value="ka">Karnataka</option>
-            <option value="kl">Kerala</option>
-            <option value="la">Ladakh</option>
-            <option value="ld">Lakshadweep Islands</option>
-            <option value="mh">Maharashtra</option>
-            <option value="ml">Meghalaya</option>
-            <option value="mn">Manipur</option>
-            <option value="mp">Madhya Pradesh</option>
-            <option value="mz">Mizoram</option>
-            <option value="nl">Nagaland</option>
-            <option value="or">Odisha</option>
-            <option value="pb">Punjab</option>
-            <option value="py">Pondicherry</option>
-            <option value="rj">Rajasthan</option>
-            <option value="sk">Sikkim</option>
-            <option value="tg">Telangana</option>
-            <option value="tn">Tamil Nadu</option>
-            <option value="tr">Tripura</option>
-            <option value="up">Uttar Pradesh</option>
-            <option value="ut">Uttarakhand</option>
-            <option value="wb">West Bengal</option>
-        </select>
-    </div>
-<div id="container2"></div>
-		</section>
-		<section class="world-impact" id="world-impact">
-			<h1>COVID-19 world impact</h1>
-			<p>Click on a country</p>
-			<div class="map-wrapper">
-				<div id="myearth"></div>
-				<!-- <div class="worldmap"></div>
-				<select class="dropdown" onchange="showCountryData()"></select> -->
-				<!-- <div class="countrywiseData">
-					<div class="country">
-						<h2>Country,  Other</h2>
-						<h1 id="countryname">China</h1>
-					</div>
-					<div class="totCases">
-						<h2>Total Cases</h2>
-						<h1 id="countrytotalcases">80,757</h1>
-					</div>
-					<div class="newCases">
-						<h2>New Cases</h2>
-						<h1 id="countrynewcases">22</h1>
-					</div>
-				</div> -->
-			</div>
-			
-		</section>
-		<section class="dailyDeaths" id="daily-deaths">
-			<h1>Global Deaths</h1>
-			<div class="chartcontent">
-				<p>of Novel Coronavirus (2019-nCoV)</p>
-				<!--<div class="chartnav">-->
-				<!--	<button class="chartbtn active">Chart</button>-->
-				<!--	<button class="tablebtn">Table</button>-->
-				<!--</div>-->
-			</div>
-			<!-- <div class="dailydeathbar"></div> -->
-			<figure class="highcharts-figure dailydeathbar">
-			    <button id="globaldaily" class="btn1 active">Daily</button>
-				<button id="globaltotal" class="btn1">Total</button>
-				<div id="dailydeath-container"></div>
-			</figure>
-			<!--<div class="table" id="dailydeathstable" style="display:none"></div>-->
-		</section>
-       	<section class="faqs" id="faqs">
-			<h1>FAQs</h1>
-			<p>The spreading fear of coronavirus and the increasing infection rate, taking the total number of positive cases in India to 115 (as of Monday), have raised more questions on its nature and ways to avoid or mitigate the pandemic. Here is a lowdown on the virus, how to avoid contracting it and seeking help in case of suspected infection.</p>
-			
-			<button class="accordion">What is coronavirus?</button>
-			<div class="panel">
-				<p>Coronavirus is a large family of viruses which may cause illness in animals or humans. Several types of coronaviruses have caused respiratory infections in humans including common cold and even severe forms such as Middle East Respiratory Syndrome (MERS) and Severe Acute Respiratory Syndrome (SARS).</p>
-			</div>
-
-			<button class="accordion">What is COVID-19?</button>
-			<div class="panel">
-				<p>COVID-19 is the most recently discovered strain of coronavirus. It was first reported in China’s Wuhan in December 2019.</p>
-			</div>
-
-			<button class="accordion">What are the symptoms of COVID-19?</button>
-			<div class="panel">
-				<p>Even though most common symptoms include fever, tiredness and dry cough, patients may also have body aches and pains, runny nose, nasal congestion, sore throat and diarrhoea.</p>
-				<p>Some people who are infected don’t develop symptoms.</p>
-				<p>Around 80% people recover without special treatment.</p>
-				<p>At least one in every six people with COVID-19 becomes seriously ill and develops breathing problems.</p>
-				<p>Older people with medical problems like high blood pressure, heart problems or diabetes, are more susceptible to serious illness.</p>
-			</div>
-
-			<button class="accordion">How does the virus spread?</button>
-			<div class="panel">
-				<p>The virus spreads when a person with COVID-19 coughs or exhales, allowing droplets from the nose or mouth to spread to others. The droplets settle on surfaces and objects, and people who touch them contract COVID-19 when they touch their eyes, nose or mouth.</p>
-				<p>It is also recommended to stay 3 feet (1 metre) away from a sick person as healthy people can contract the disease if they breath in droplets from the former when he/she coughs or exhales droplets.</p>
-			</div>
-
-			<button class="accordion">Is coronavirus airborne?</button>
-			<div class="panel">
-				<p>Recent reports have shown that the virus can survive in the air for several hours in the form of aerosols. However, it is unlikely to spread in the same way.</p>
-			</div>
-			
-			<button class="accordion">Who are at risk?</button>
-			<div class="panel">
-				<p>Older people and people with existing medical conditions like blood pressure, heart diseases, lung diseases, cancer or diabetes are more vulnerable to the disease than others.</p>
-			</div>
-			
-			
-			<button class="accordion">Are children and pregnant women at risk?</button>
-			<div class="panel">
-				<p>While research has shown that COVID19 is rarely severe in children, they could transmit it to others when they come in contact. LITTLE IS KNOWN ABOUT THE IMPACT OF THE VIRUS ON PREGNANT WOMEN. However, they are as likely as others to develop symptoms of the virus.</p>
-			</div>
-
-			<button class="accordion">How can I protect myself?</button>
-			<div class="panel">
-				<p>Wash hands frequently and thoroughly with soap and water or alcohol-based hand rub like hand sanitizers.</p>
-				<p>Maintain at least 3 feet distance between yourself or a person who is coughing or sneezing.</p>
-				<p>Avoid touching eyes, nose and mouth, as you may have touched contaminated surfaces.</p>
-				<p>Follow and encourage people around you to follow respiratory hygiene i.e. use a tissue while coughing or sneezing. Dispose used tissues.</p>
-				<p>Stay at home if you don’t feel well. Seek medical attention if you have fever, cough and breathing difficulties.</p>
-				<p>Keep yourself updated on the latest COVID hotspots.</p>
-				<p>If possible, avoid travelling to places, to minimize the risk of contracting the disease.</p>
-			</div>
-
-			<button class="accordion">Should I avoid eating out?</button>
-			<div class="panel">
-				<p>Considering that one may or may not know what kind of food standards and practices are adopted in eateries and restruants, the wise thing to do would be to stick to home cooked food.</p>
-			</div>
-			
-			<button class="accordion">Does non-vegetarian food contribute to growth of the virus?</button>
-			<div class="panel">
-				<p>Typical Indian non-vegetarian food like chicken, fish, mutton etc will not lead to infection by coronavirus. However, if you are going to consume them from places where food safety standards and hygiene are not followed, they can lead to gastrointestinal infections that weaken the immune system. A weakened immune system can make you susceptible to any kind of virus. So, the best option is home-cooked non-vegetarian food.</p>
-			</div>
-			
-			<button class="accordion">Can the virus transmit through door delivered food by app based aggregators?</button>
-			<div class="panel">
-				<p>It is difficult to know if the delivery boy has been in contact with an infected person and he could be a potential carrier. Home cooked food is more advisable.</p>
-			</div>
-			
-			<button class="accordion">Will masks protect me from picking up the virus?</button>
-			<div class="panel">
-				<p>Masks are more effective for those having the virus or when you care for someone with the virus, as per the World Health Organisation.</p>
-			</div>
-			
-			<button class="accordion">Do sanitisers really help? How much is it effective as compared to washing hands with soap?</button>
-			<div class="panel">
-				<p>While sanitisers can help you when you are on the move, a hand washing regimen is more recommended, as it is more effective in keeping germs at bay.</p>
-			</div>
-			
-			
-			<button class="accordion">What to do if I want to get checked for COVID-19?</button>
-			<div class="panel">
-				<p>You need not get tested if you don’t have the symptoms of cough, fever or difficulty in breathing .</p>
-				<p>f you have symptoms, have travelled to COVID-19 countries like Italy, Iran, Republic of Korea, France, Spain, Germany and UAE or have come in contact with a positive person, call the state helpline number or Union Ministry of Health and Family Welfare’s 24x7 helpline number (011-23978046) or email at ncov2019@gmail.com.</p>
-				<p>The helpline service will take down your contact details and contact you with the testing protocols. You will be tested at a government-approved lab if you qualify as a case for testing.</p>
-			</div>
-			
-			<button class="accordion">Can I get myself tested in a private hospital or lab?</button>
-			<div class="panel">
-				<p>The government has planned to allow NABL-accredited private labs to carry out tests. You can find government approved labs at https://www.icmr.nic.in/</p>
-			</div>
-			
-			<button class="accordion">Can antibiotics be used to treat the disease?</button>
-			<div class="panel">
-				<p>No. antibiotics will not work on viral infections. They can only treat bacterial infection.</p>
-			</div>
-			
-			<button class="accordion">Don’ts to avoid infection</button>
-			<div class="panel">
-				<p>Smoking</p>
-				<p>Wearing multiple masks</p>
-				<p>Taking antibiotics</p>
-			</div>
-			
-			<button class="accordion">What protective measures should people who are in or have recently visited areas where COVID-19 is spreading, take?</button>
-			<div class="panel">
-				<p>Stay at home if you feel unwell, even with mild symptoms like headache and runny nose, until you recover.</p>
-				<p>Avoid contact with people.</p>
-				<p>Visit a medical facility or hospital as they can help you better.</p>
-			</div>
-
-
-		</section>
-	</div>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-	<script src="https://thefederal.com/embed/common-js/d3.v4.min.js"></script>
-	<script src="js/d3-tip.js"></script>
-	<script src="https://d3js.org/topojson.v2.min.js"></script>
-	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-	<script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
-	<script src="js/miniature.earth.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<!-- <script src="js/test-api.js"></script> -->
-	<script src="js/loadData.js"></script>
-    <script src="js/globe.js"></script>
-    <script src="js/accordion.js"></script>
-    <script src="js/functions.js"></script>
-	<script src="js/table.js"></script>
-	<script src="js/accordion-table.js"></script>
-    <script src="js/barchart.js"></script>
-	<script src="js/linechart.js"></script>
-<!-- 	<script src="js/indiadata.js"></script> -->
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="js/chart1.js"></script>
-
-	<script src="js/chart2.js"></script>
-<script src="js/globaldata.js"></script>
-    
-    <script src="js/map.js?v=13320205555"></script>
-    <script src="js/bootstrap-fullscreen-select.js?v=3434"></script>
-    <script src="js/indiamap.js"></script>
-	<script type='text/javascript'>
-
-		$(".dailyDeaths .tablebtn").on("click", function(){
-			$("#dailydeathstable").css("display", "block")
-			$(".dailydeathbar").css("display", "none")
-			$(".dailyDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		$(".dailyDeaths .chartbtn").on("click", function(){
-			$("#dailydeathstable").css("display", "none")
-			$(".dailydeathbar").css("display", "block")
-			$(".dailyDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		
-		$(".totalDeaths .tablebtn").on("click", function(){
-			$("#totaldeathstable").css("display", "block")
-			$(".dailydeathline").css("display", "none")
-			$(".totalDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		$(".totalDeaths .chartbtn").on("click", function(){
-			$("#totaldeathstable").css("display", "none")
-			$(".dailydeathline").css("display", "block")
-			$(".totalDeaths button").removeClass("active")
-			$(this).addClass("active")
-		});
-		
-		var defaultMapData = countrywisedata.filter(function(item){
-            return item['countryId'] === "156" ;
-        })
-		var defaultIndiaMapData = indiaData.filter(function(item){
-			// console.log(item);
-			
-            return item['stateId'] === "S13" ;
-        })
-        var filterData = countrywisedata.filter(function(item){
-			if( item["countryId"] !== "NULL"){
-				return item["Total Cases"] !== "NULL";
-			}
-        })
-        
-		var formatComma = d3.format(",")
-		function numberWithCommas(x) {
-            x=x.toString();
-            x = x.replace(" ", "");
-            lastThree = x.substring(x.length-3);
-            otherNumbers = x.substring(0,x.length-3);
-            if(otherNumbers != '')
-                lastThree = ',' + lastThree;
-            res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-            return res;
-		}
-		d3.select("#lastupdatedtime").text(lastupdate)
-		const renderCard = () => {
-			d3.select("#totAffected").text(numberWithCommas(globalTotalData[0]["Total Cases"]))
-			d3.select("#totDeath").text(numberWithCommas(globalTotalData[0]["Total Deaths"]))
-			d3.select("#totRecovered").text(numberWithCommas(globalTotalData[0]["Total Recovered"]))
-		
-			d3.select("#currInfected").text(numberWithCommas(currentData[0]["infected"]))
-			d3.select("#currMild").text(numberWithCommas(currentData[0]["mild_condition"]))
-			d3.select("#currCritical").text(numberWithCommas(currentData[0]["critical"]))
-			d3.select("#outcome-cases").text(numberWithCommas(currentData[0]["outcome"]))
-			$("#totAffected").removeClass('loading');
-			$("#totDeath").removeClass('loading');
-			$("#totRecovered").removeClass('loading');
-
-		}
-		// Default World data =======================================
-		// d3.select("#countryname").text(defaultMapData[0].Country)
-        // function animator(fieldName,fieldId) {
-        //     if(defaultMapData[0][fieldName] !== "NULL" ){
-        //             var countrytotalcases = d3.select("#"+fieldId).text(0)
-        //             countrytotalcases.transition()
-        //                 .tween("text", function() {
-        //                     var selection = d3.select(this);    // selection of node being transitioned
-        //                     var start = d3.select(this).text(); // start value prior to transition
-        //                     var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
-        //                     var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
-        //                     return function(t) { 
-        //                             selection.text(Math.round(interpolator(t)));
-        //                     };  // return value
-        //                 })
-        //                 .duration(1000)
-        //                 .on("end", function() {
-        //                     d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
-        //                 });
-
-        //         }else{
-        //             d3.select("#"+fieldId).text("-")
-        //         }
-        // }      
-        // animator("Total Cases","countrytotalcases");
-        // animator("New Cases","countrynewcases");
-        // animator("Total Deaths","countrytotaldeaths");
-        // animator("New Deaths","countrynewdeaths");
-        // animator("Total Recovered","countrytotalRecovered");       
-		// animator("Serious","countrySerious"); 
-		
-		// Default India Data ================================
-		d3.select("#statename").text("India")
-		animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
-		// animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
-		animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
-		animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
-
-
-
-
-
-		//===================================================
-        // Mild and Critical Chart
-        var recovered_p = currentData[0]["recovered_p"];
-        var critical_p = currentData[0]["critical_p"];
-        var mild_condition_p = currentData[0]["mild_condition_p"];
-        currentData[0]["critical_p"] = currentData[0]["critical_p"].replace("%", "");
-        currentData[0]["mild_condition_p"] = currentData[0]["mild_condition_p"].replace("%", "");
-        currentData[0]["recovered_p"] = currentData[0]["recovered_p"].replace("%", "");
-        d3.select("#barcritical")
-            .style("width", critical_p)
-            .text(currentData[0]["critical_p"]+"%")
-        d3.select("#barmild").text(currentData[0]["mild_condition_p"]+"%")
-        // Cases with outcomechart Chart
-        d3.select("#baroutcome")
-            .style("width", recovered_p)
-            .text(currentData[0]["recovered_p"]+"%")
-		// drawWorldMap(".worldmap");
-		drawIndiaMap(".indiamap")
-		createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
-		createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
-        // drawBarchart(".dailydeathbar")
-		// drawLinechart(".dailydeathline")
-		drawTable(dailyDeathData, "#dailydeathstable")
-		drawTable(dailyTotalDeathData, "#totaldeathstable")
-		setTimeout(() => {	renderCard();	}, 1000);
-    </script>
-</body>
+                     <div class="otherdata">
+                        <div class="totCases points">
+                           <h2>Confirmed<br>cases</h2>
+                           <h1 id="stateConfIndians">80,757</h1>
+                        </div>
+                        <div class="newCases respondpoints">
+                           <h2>Cured /<br>Discharged</h2>
+                           <h1 id="stateCured">22</h1>
+                        </div>
+                        <div class="stateDeaths">
+                           <figure>
+                              <img src="img/Asset6.png">
+                           </figure>
+                           <div class="contentcolumne">
+                              <h2>Deaths</h2>
+                              <h1 id="stateDead">22</h1>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="indiamap"><button class="allIndia">All India</button></div>
+                  <select class="dropdownstate" onchange="showStateData()"></select>
+                  <ul class="legend">
+                     <!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
+                     <li><span style="background-color: #fff5f0;"></span>0</li>
+                     <li><span style="background-color: #fee0d2;"></span>500</li>
+                     <li><span style="background-color: #fcbba1;"></span>1000</li>
+                     <li><span style="background-color: #fc9272;"></span>1500</li>
+                     <li><span style="background-color: #fb6a4a;"></span>2000</li>
+                     <li><span style="background-color: #ef3b2c;"></span>2500</li>
+                     <li><span style="background-color: #cb181d;"></span>3000</li>
+                     <li><span style="background-color: #a50f15;"></span>3500</li>
+                     <li><span style="background-color: #67000d;"></span>4000</li>
+                  </ul>
+                  <!-- <figure class="highcharts-figure">
+                     <div id="dailydeath-container"></div>
+                     </figure> -->
+                  <!-- <figure class="highcharts-figure">
+                     <div id="totalDeath-container"></div>
+                     </figure> -->
+               </div>
+            </div>
+         </section>
+         <section class="indiadata-charts">
+            <!-- 			<div>
+               <h1>India Confirmed cases</h1>
+               <figure class="highcharts-figure">
+               	<button id="dailyconfirmed" class="btn1 active">Daily</button>
+               	<button id="totalconfirmed" class="btn1">Total</button>
+               	<div id="dailyconfirmed-container"></div>
+               </figure>
+               </div>
+               <div>
+               <h1>India Deaths</h1>
+               <figure class="highcharts-figure">
+                 <button id="dailydeceased" class="btn2 active">Daily</button>
+                 <button id="totaldeceased" class="btn2">Total</button>
+                 <div id="dailydeceased-container"></div>
+               </figure>
+               </div> -->
+            <h1>India Daily Statistics</h1>
+            <div class="states-btn">
+               <button id="recovered" class="">Recovered</button>
+               <button id="confirmed" class="active">Confirmed</button>
+               <button id="deceased">Deceased</button>
+               <select id="selectData" style="display: inline; ">
+                  <option value="tt" selected="selected">All India</option>
+                  <option value="an">Andaman and Nicobar Islands</option>
+                  <option value="ap">Andhra Pradesh</option>
+                  <option value="ar">Arunachal Pradesh</option>
+                  <option value="as">Assam</option>
+                  <option value="br">Bihar</option>
+                  <option value="ch">Chandigarh</option>
+                  <option value="ct">Chattisgarh</option>
+                  <option value="dd">Daman and Diu</option>
+                  <option value="dl">Delhi</option>
+                  <option value="dn">Dadra and Nagar Haveli</option>
+                  <option value="ga">Goa</option>
+                  <option value="gj">Gujarat</option>
+                  <option value="hp">Himachal Pradesh</option>
+                  <option value="hr">Haryana</option>
+                  <option value="jh">Jharkhand</option>
+                  <option value="jk">Jammu and Kashmir</option>
+                  <option value="ka">Karnataka</option>
+                  <option value="kl">Kerala</option>
+                  <option value="la">Ladakh</option>
+                  <option value="ld">Lakshadweep Islands</option>
+                  <option value="mh">Maharashtra</option>
+                  <option value="ml">Meghalaya</option>
+                  <option value="mn">Manipur</option>
+                  <option value="mp">Madhya Pradesh</option>
+                  <option value="mz">Mizoram</option>
+                  <option value="nl">Nagaland</option>
+                  <option value="or">Odisha</option>
+                  <option value="pb">Punjab</option>
+                  <option value="py">Pondicherry</option>
+                  <option value="rj">Rajasthan</option>
+                  <option value="sk">Sikkim</option>
+                  <option value="tg">Telangana</option>
+                  <option value="tn">Tamil Nadu</option>
+                  <option value="tr">Tripura</option>
+                  <option value="up">Uttar Pradesh</option>
+                  <option value="ut">Uttarakhand</option>
+                  <option value="wb">West Bengal</option>
+               </select>
+            </div>
+            <div id="container2"></div>
+            <div id="india-tot">
+               <button id="totrec">Recovered</button>
+               <button id="totconf" class="active">Confirmed</button>
+               <button id="totdea">Deaths</button>
+            </div>
+            <div id="indiastats"></div>
+         </section>
+         <section class="world-impact" id="world-impact">
+            <h1>COVID-19 world impact</h1>
+            <p>Click on a country</p>
+            <div class="map-wrapper">
+               <div id="myearth"></div>
+               <!-- <div class="worldmap"></div>
+                  <select class="dropdown" onchange="showCountryData()"></select> -->
+               <!-- <div class="countrywiseData">
+                  <div class="country">
+                  	<h2>Country,  Other</h2>
+                  	<h1 id="countryname">China</h1>
+                  </div>
+                  <div class="totCases">
+                  	<h2>Total Cases</h2>
+                  	<h1 id="countrytotalcases">80,757</h1>
+                  </div>
+                  <div class="newCases">
+                  	<h2>New Cases</h2>
+                  	<h1 id="countrynewcases">22</h1>
+                  </div>
+                  </div> -->
+            </div>
+         </section>
+         <section class="dailyDeaths" id="daily-deaths">
+            <h1>Global Deaths</h1>
+            <div class="chartcontent">
+               <p>of Novel Coronavirus (2019-nCoV)</p>
+               <!--<div class="chartnav">-->
+               <!--	<button class="chartbtn active">Chart</button>-->
+               <!--	<button class="tablebtn">Table</button>-->
+               <!--</div>-->
+            </div>
+            <!-- <div class="dailydeathbar"></div> -->
+            <figure class="highcharts-figure dailydeathbar">
+               <button id="globaldaily" class="btn1 active">Daily</button>
+               <button id="globaltotal" class="btn1">Total</button>
+               <div id="dailydeath-container"></div>
+            </figure>
+            <!--<div class="table" id="dailydeathstable" style="display:none"></div>-->
+         </section>
+         <section class="faqs" id="faqs">
+            <h1>FAQs</h1>
+            <p>The spreading fear of coronavirus and the increasing infection rate, taking the total number of positive cases in India to 115 (as of Monday), have raised more questions on its nature and ways to avoid or mitigate the pandemic. Here is a lowdown on the virus, how to avoid contracting it and seeking help in case of suspected infection.</p>
+            <button class="accordion">What is coronavirus?</button>
+            <div class="panel">
+               <p>Coronavirus is a large family of viruses which may cause illness in animals or humans. Several types of coronaviruses have caused respiratory infections in humans including common cold and even severe forms such as Middle East Respiratory Syndrome (MERS) and Severe Acute Respiratory Syndrome (SARS).</p>
+            </div>
+            <button class="accordion">What is COVID-19?</button>
+            <div class="panel">
+               <p>COVID-19 is the most recently discovered strain of coronavirus. It was first reported in China’s Wuhan in December 2019.</p>
+            </div>
+            <button class="accordion">What are the symptoms of COVID-19?</button>
+            <div class="panel">
+               <p>Even though most common symptoms include fever, tiredness and dry cough, patients may also have body aches and pains, runny nose, nasal congestion, sore throat and diarrhoea.</p>
+               <p>Some people who are infected don’t develop symptoms.</p>
+               <p>Around 80% people recover without special treatment.</p>
+               <p>At least one in every six people with COVID-19 becomes seriously ill and develops breathing problems.</p>
+               <p>Older people with medical problems like high blood pressure, heart problems or diabetes, are more susceptible to serious illness.</p>
+            </div>
+            <button class="accordion">How does the virus spread?</button>
+            <div class="panel">
+               <p>The virus spreads when a person with COVID-19 coughs or exhales, allowing droplets from the nose or mouth to spread to others. The droplets settle on surfaces and objects, and people who touch them contract COVID-19 when they touch their eyes, nose or mouth.</p>
+               <p>It is also recommended to stay 3 feet (1 metre) away from a sick person as healthy people can contract the disease if they breath in droplets from the former when he/she coughs or exhales droplets.</p>
+            </div>
+            <button class="accordion">Is coronavirus airborne?</button>
+            <div class="panel">
+               <p>Recent reports have shown that the virus can survive in the air for several hours in the form of aerosols. However, it is unlikely to spread in the same way.</p>
+            </div>
+            <button class="accordion">Who are at risk?</button>
+            <div class="panel">
+               <p>Older people and people with existing medical conditions like blood pressure, heart diseases, lung diseases, cancer or diabetes are more vulnerable to the disease than others.</p>
+            </div>
+            <button class="accordion">Are children and pregnant women at risk?</button>
+            <div class="panel">
+               <p>While research has shown that COVID19 is rarely severe in children, they could transmit it to others when they come in contact. LITTLE IS KNOWN ABOUT THE IMPACT OF THE VIRUS ON PREGNANT WOMEN. However, they are as likely as others to develop symptoms of the virus.</p>
+            </div>
+            <button class="accordion">How can I protect myself?</button>
+            <div class="panel">
+               <p>Wash hands frequently and thoroughly with soap and water or alcohol-based hand rub like hand sanitizers.</p>
+               <p>Maintain at least 3 feet distance between yourself or a person who is coughing or sneezing.</p>
+               <p>Avoid touching eyes, nose and mouth, as you may have touched contaminated surfaces.</p>
+               <p>Follow and encourage people around you to follow respiratory hygiene i.e. use a tissue while coughing or sneezing. Dispose used tissues.</p>
+               <p>Stay at home if you don’t feel well. Seek medical attention if you have fever, cough and breathing difficulties.</p>
+               <p>Keep yourself updated on the latest COVID hotspots.</p>
+               <p>If possible, avoid travelling to places, to minimize the risk of contracting the disease.</p>
+            </div>
+            <button class="accordion">Should I avoid eating out?</button>
+            <div class="panel">
+               <p>Considering that one may or may not know what kind of food standards and practices are adopted in eateries and restruants, the wise thing to do would be to stick to home cooked food.</p>
+            </div>
+            <button class="accordion">Does non-vegetarian food contribute to growth of the virus?</button>
+            <div class="panel">
+               <p>Typical Indian non-vegetarian food like chicken, fish, mutton etc will not lead to infection by coronavirus. However, if you are going to consume them from places where food safety standards and hygiene are not followed, they can lead to gastrointestinal infections that weaken the immune system. A weakened immune system can make you susceptible to any kind of virus. So, the best option is home-cooked non-vegetarian food.</p>
+            </div>
+            <button class="accordion">Can the virus transmit through door delivered food by app based aggregators?</button>
+            <div class="panel">
+               <p>It is difficult to know if the delivery boy has been in contact with an infected person and he could be a potential carrier. Home cooked food is more advisable.</p>
+            </div>
+            <button class="accordion">Will masks protect me from picking up the virus?</button>
+            <div class="panel">
+               <p>Masks are more effective for those having the virus or when you care for someone with the virus, as per the World Health Organisation.</p>
+            </div>
+            <button class="accordion">Do sanitisers really help? How much is it effective as compared to washing hands with soap?</button>
+            <div class="panel">
+               <p>While sanitisers can help you when you are on the move, a hand washing regimen is more recommended, as it is more effective in keeping germs at bay.</p>
+            </div>
+            <button class="accordion">What to do if I want to get checked for COVID-19?</button>
+            <div class="panel">
+               <p>You need not get tested if you don’t have the symptoms of cough, fever or difficulty in breathing .</p>
+               <p>f you have symptoms, have travelled to COVID-19 countries like Italy, Iran, Republic of Korea, France, Spain, Germany and UAE or have come in contact with a positive person, call the state helpline number or Union Ministry of Health and Family Welfare’s 24x7 helpline number (011-23978046) or email at ncov2019@gmail.com.</p>
+               <p>The helpline service will take down your contact details and contact you with the testing protocols. You will be tested at a government-approved lab if you qualify as a case for testing.</p>
+            </div>
+            <button class="accordion">Can I get myself tested in a private hospital or lab?</button>
+            <div class="panel">
+               <p>The government has planned to allow NABL-accredited private labs to carry out tests. You can find government approved labs at https://www.icmr.nic.in/</p>
+            </div>
+            <button class="accordion">Can antibiotics be used to treat the disease?</button>
+            <div class="panel">
+               <p>No. antibiotics will not work on viral infections. They can only treat bacterial infection.</p>
+            </div>
+            <button class="accordion">Don’ts to avoid infection</button>
+            <div class="panel">
+               <p>Smoking</p>
+               <p>Wearing multiple masks</p>
+               <p>Taking antibiotics</p>
+            </div>
+            <button class="accordion">What protective measures should people who are in or have recently visited areas where COVID-19 is spreading, take?</button>
+            <div class="panel">
+               <p>Stay at home if you feel unwell, even with mild symptoms like headache and runny nose, until you recover.</p>
+               <p>Avoid contact with people.</p>
+               <p>Visit a medical facility or hospital as they can help you better.</p>
+            </div>
+         </section>
+      </div>
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+      <script src="https://thefederal.com/embed/common-js/d3.v4.min.js"></script>
+      <script src="js/d3-tip.js"></script>
+      <script src="https://d3js.org/topojson.v2.min.js"></script>
+      <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+      <script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
+      <script src="js/miniature.earth.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <!-- <script src="js/test-api.js"></script> -->
+      <script src="js/loadData.js"></script>
+      <script src="js/globe.js"></script>
+      <script src="js/accordion.js"></script>
+      <script src="js/functions.js"></script>
+      <script src="js/table.js"></script>
+      <script src="js/accordion-table.js"></script>
+      <script src="js/barchart.js"></script>
+      <script src="js/linechart.js"></script>
+      <!-- 	<script src="js/indiadata.js"></script> -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/data.js"></script>
+      <script src="js/chart1.js"></script>
+      <script src="js/chart2.js"></script>
+      <script src="js/globaldata.js"></script>
+      <script src="js/map.js?v=13320205555"></script>
+      <script src="js/bootstrap-fullscreen-select.js?v=3434"></script>
+      <script src="js/indiamap.js"></script>
+      <script type='text/javascript'>
+         $(".dailyDeaths .tablebtn").on("click", function(){
+         	$("#dailydeathstable").css("display", "block")
+         	$(".dailydeathbar").css("display", "none")
+         	$(".dailyDeaths button").removeClass("active")
+         	$(this).addClass("active")
+         });
+         $(".dailyDeaths .chartbtn").on("click", function(){
+         	$("#dailydeathstable").css("display", "none")
+         	$(".dailydeathbar").css("display", "block")
+         	$(".dailyDeaths button").removeClass("active")
+         	$(this).addClass("active")
+         });
+         
+         $(".totalDeaths .tablebtn").on("click", function(){
+         	$("#totaldeathstable").css("display", "block")
+         	$(".dailydeathline").css("display", "none")
+         	$(".totalDeaths button").removeClass("active")
+         	$(this).addClass("active")
+         });
+         $(".totalDeaths .chartbtn").on("click", function(){
+         	$("#totaldeathstable").css("display", "none")
+         	$(".dailydeathline").css("display", "block")
+         	$(".totalDeaths button").removeClass("active")
+         	$(this).addClass("active")
+         });
+         
+         var defaultMapData = countrywisedata.filter(function(item){
+                   return item['countryId'] === "156" ;
+               })
+         var defaultIndiaMapData = indiaData.filter(function(item){
+         	// console.log(item);
+         	
+                   return item['stateId'] === "S13" ;
+               })
+               var filterData = countrywisedata.filter(function(item){
+         	if( item["countryId"] !== "NULL"){
+         		return item["Total Cases"] !== "NULL";
+         	}
+               })
+               
+         var formatComma = d3.format(",")
+         function numberWithCommas(x) {
+                   x=x.toString();
+                   x = x.replace(" ", "");
+                   lastThree = x.substring(x.length-3);
+                   otherNumbers = x.substring(0,x.length-3);
+                   if(otherNumbers != '')
+                       lastThree = ',' + lastThree;
+                   res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+                   return res;
+         }
+         d3.select("#lastupdatedtime").text(lastupdate)
+         const renderCard = () => {
+         	d3.select("#totAffected").text(numberWithCommas(globalTotalData[0]["Total Cases"]))
+         	d3.select("#totDeath").text(numberWithCommas(globalTotalData[0]["Total Deaths"]))
+         	d3.select("#totRecovered").text(numberWithCommas(globalTotalData[0]["Total Recovered"]))
+         
+         	d3.select("#currInfected").text(numberWithCommas(currentData[0]["infected"]))
+         	d3.select("#currMild").text(numberWithCommas(currentData[0]["mild_condition"]))
+         	d3.select("#currCritical").text(numberWithCommas(currentData[0]["critical"]))
+         	d3.select("#outcome-cases").text(numberWithCommas(currentData[0]["outcome"]))
+         	$("#totAffected").removeClass('loading');
+         	$("#totDeath").removeClass('loading');
+         	$("#totRecovered").removeClass('loading');
+         
+         }
+         // Default World data =======================================
+         // d3.select("#countryname").text(defaultMapData[0].Country)
+               // function animator(fieldName,fieldId) {
+               //     if(defaultMapData[0][fieldName] !== "NULL" ){
+               //             var countrytotalcases = d3.select("#"+fieldId).text(0)
+               //             countrytotalcases.transition()
+               //                 .tween("text", function() {
+               //                     var selection = d3.select(this);    // selection of node being transitioned
+               //                     var start = d3.select(this).text(); // start value prior to transition
+               //                     var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
+               //                     var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+               //                     return function(t) { 
+               //                             selection.text(Math.round(interpolator(t)));
+               //                     };  // return value
+               //                 })
+               //                 .duration(1000)
+               //                 .on("end", function() {
+               //                     d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
+               //                 });
+         
+               //         }else{
+               //             d3.select("#"+fieldId).text("-")
+               //         }
+               // }      
+               // animator("Total Cases","countrytotalcases");
+               // animator("New Cases","countrynewcases");
+               // animator("Total Deaths","countrytotaldeaths");
+               // animator("New Deaths","countrynewdeaths");
+               // animator("Total Recovered","countrytotalRecovered");       
+         // animator("Serious","countrySerious"); 
+         
+         // Default India Data ================================
+         d3.select("#statename").text("India")
+         animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
+         // animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
+         animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
+         animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
+         
+         
+         
+         
+         
+         //===================================================
+               // Mild and Critical Chart
+               var recovered_p = currentData[0]["recovered_p"];
+               var critical_p = currentData[0]["critical_p"];
+               var mild_condition_p = currentData[0]["mild_condition_p"];
+               currentData[0]["critical_p"] = currentData[0]["critical_p"].replace("%", "");
+               currentData[0]["mild_condition_p"] = currentData[0]["mild_condition_p"].replace("%", "");
+               currentData[0]["recovered_p"] = currentData[0]["recovered_p"].replace("%", "");
+               d3.select("#barcritical")
+                   .style("width", critical_p)
+                   .text(currentData[0]["critical_p"]+"%")
+               d3.select("#barmild").text(currentData[0]["mild_condition_p"]+"%")
+               // Cases with outcomechart Chart
+               d3.select("#baroutcome")
+                   .style("width", recovered_p)
+                   .text(currentData[0]["recovered_p"]+"%")
+         // drawWorldMap(".worldmap");
+         drawIndiaMap(".indiamap")
+         createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
+         createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
+               // drawBarchart(".dailydeathbar")
+         // drawLinechart(".dailydeathline")
+         drawTable(dailyDeathData, "#dailydeathstable")
+         drawTable(dailyTotalDeathData, "#totaldeathstable")
+         setTimeout(() => {	renderCard();	}, 1000);
+           
+      </script>
+   </body>
 </html>
