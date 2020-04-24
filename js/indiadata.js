@@ -1,60 +1,78 @@
-        var totalconf = [];
+var totalconf = [], initialdata = [];
         var totaldea = [];
         var totalrec = [];
         var resDate = [];
+        var fortest;
+        fortest = initialdata;
         jQuery(document).ready(function() {
-            jQuery("#totrec").click(function(){
-                chart2.series[0].update({
-                    name: 'Recovered cases',
-                    color: '#0bab02'
-                });
-                $(this).addClass("active");
-                $("#totconf").removeClass("active");
-                $("#totdea").removeClass("active");
+            Highcharts.setOptions({
+                lang: {
+                thousandsSep: ','
+                }
             });
             jQuery("#totconf").click(function(){
+                fortest = totalconf
+                chart2.series[0].setData(fortest)
                 chart2.series[0].update({
                     name: 'Confirmed cases',
+                    // data: fortest,
                     color: '#035add'
                 });
                 $(this).addClass("active");
                 $("#totrec").removeClass("active");
                 $("#totdea").removeClass("active");
             });
+            jQuery("#totrec").click(function(){
+                // chart2.series[0].setData(totrec)
+                fortest = totalrec
+                console.log(fortest)
+                chart2.series[0].update({
+                    name: 'Recovered cases',
+                    data: fortest,
+                    color: '#0bab02'
+                });
+                $(this).addClass("active");
+                $("#totconf").removeClass("active");
+                $("#totdea").removeClass("active");
+            });
             jQuery("#totdea").click(function(){
+                fortest = totaldea
+                console.log(fortest)
+                // chart2.series[0].setData(fortest)
                 chart2.series[0].update({
                     name: 'Deaths',
+                    data: fortest,
                     color: '#f00'
                 });
                 $(this).addClass("active");
                 $("#totconf").removeClass("active");
                 $("#totrec").removeClass("active");
             });
-            $.ajax ({
-                 'async': false,
-                 'global': false,
-                 'dataType': 'json',
-                 'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=dailyIndia',
-                 'success': function(data) {
-                     // console.log(data.cases_time_series)
-                     var result = data.cases_time_series;
-                     console.log(result)
-                     result.forEach(function(key,value) {
-                        totalrec.push(parseInt(key["totalrecovered"]));
-                         totalconf.push(parseInt(key["totalconfirmed"]));
-                         totaldea.push(parseInt(key["totaldeceased"]));
-                             resDate.push(key["date"].slice(0, 6));
-                         });
-                         console.log(totalconf);
-                         if(screen.width <= 767) {
-                             stepValue = { step: 10};
-                         } else {
-                             stepValue = { step: 5};  
-                         }
-                 }
-         
-            });
-           
+                $.ajax ({
+                    'async': false,
+                    'global': false,
+                    'dataType': 'json',
+                    'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=dailyIndia',
+                    'success': function(data) {
+                        // console.log(data.cases_time_series)
+                        var result = data.cases_time_series;
+                        console.log(result)
+                        result.forEach(function(key,value) {
+                            initialdata.push(parseInt(key["totalconfirmed"]));
+                            totalrec.push(parseInt(key["totalrecovered"]));
+                                totalconf.push(parseInt(key["totalconfirmed"]));
+                                totaldea.push(parseInt(key["totaldeceased"]));
+                                    resDate.push(key["date"].slice(0, 6));
+                            });
+                            console.log(totaldea);
+                            if(screen.width <= 767) {
+                                stepValue = { step: 10};
+                            } else {
+                                stepValue = { step: 5};  
+                            }
+                    }
+            
+                });
             Highcharts.Series.prototype.pointClass.prototype.isValid = function() {
                 var isLogCorrect = this.series.yAxis.isLog ? this.y > 0 : true,
                     isValid = this.x !== null && Highcharts.isNumber(this.y, true) && isLogCorrect;
@@ -67,7 +85,7 @@
                     point.isNull = !point.isValid();
                 })
             });
-
+            
             var chart2 = new Highcharts.Chart({
                 exporting: {
                     buttons: {
@@ -103,14 +121,17 @@
                 labels:  stepValue
                 },
                 series: [{
-                    data: totalconf,
+                    data: fortest,
                     name: 'Confirmed Cases',
                     color: '#035add'
                 }]
             });
+
+
+            
         })
 
-        
+
 
 // $(document).ready(function() {
 //             Highcharts.setOptions({
