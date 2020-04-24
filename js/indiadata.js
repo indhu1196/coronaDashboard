@@ -10,44 +10,6 @@ var totalconf = [], initialdata = [];
                 thousandsSep: ','
                 }
             });
-            jQuery("#totconf").click(function(){
-                fortest = totalconf
-                chart2.series[0].setData(fortest)
-                chart2.series[0].update({
-                    name: 'Confirmed cases',
-                    // data: fortest,
-                    color: '#035add'
-                });
-                $(this).addClass("active");
-                $("#totrec").removeClass("active");
-                $("#totdea").removeClass("active");
-            });
-            jQuery("#totrec").click(function(){
-                // chart2.series[0].setData(totrec)
-                fortest = totalrec
-                console.log(fortest)
-                chart2.series[0].update({
-                    name: 'Recovered cases',
-                    data: fortest,
-                    color: '#0bab02'
-                });
-                $(this).addClass("active");
-                $("#totconf").removeClass("active");
-                $("#totdea").removeClass("active");
-            });
-            jQuery("#totdea").click(function(){
-                fortest = totaldea
-                console.log(fortest)
-                // chart2.series[0].setData(fortest)
-                chart2.series[0].update({
-                    name: 'Deaths',
-                    data: fortest,
-                    color: '#f00'
-                });
-                $(this).addClass("active");
-                $("#totconf").removeClass("active");
-                $("#totrec").removeClass("active");
-            });
                 $.ajax ({
                     'async': false,
                     'global': false,
@@ -127,7 +89,44 @@ var totalconf = [], initialdata = [];
                 }]
             });
 
-
+jQuery("#totconf").click(function(){
+                fortest = totalconf
+                chart2.series[0].setData(fortest)
+                chart2.series[0].update({
+                    name: 'Confirmed cases',
+                    // data: fortest,
+                    color: '#035add'
+                });
+                $(this).addClass("active");
+                $("#totrec").removeClass("active");
+                $("#totdea").removeClass("active");
+            });
+            jQuery("#totrec").click(function(){
+                // chart2.series[0].setData(totrec)
+                fortest = totalrec
+                console.log(fortest)
+                chart2.series[0].update({
+                    name: 'Recovered cases',
+                    data: fortest,
+                    color: '#0bab02'
+                });
+                $(this).addClass("active");
+                $("#totconf").removeClass("active");
+                $("#totdea").removeClass("active");
+            });
+            jQuery("#totdea").click(function(){
+                fortest = totaldea
+                console.log(fortest)
+                // chart2.series[0].setData(fortest)
+                chart2.series[0].update({
+                    name: 'Deaths',
+                    data: fortest,
+                    color: '#f00'
+                });
+                $(this).addClass("active");
+                $("#totconf").removeClass("active");
+                $("#totrec").removeClass("active");
+            });
             
         })
 
