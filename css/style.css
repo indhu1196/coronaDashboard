@@ -1382,7 +1382,7 @@ fill: #035add!important;
     font-size: 14px;
     cursor: pointer;
 }
-.states-btn button {
+.states-btn button, #india-tot button {
         /* background-color: #dddddd; */
         color: #4c4c4c;
         border: none;
@@ -1393,7 +1393,7 @@ fill: #035add!important;
         text-transform: uppercase;
         margin-left: 10px;
     }
-    .states-btn button.active {
+    .states-btn button.active, #india-tot button.active {
         background-color: #d4d2d2 !important;
         color: #F00 !important;
         outline: 0;
