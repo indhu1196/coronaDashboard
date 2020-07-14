@@ -28,9 +28,9 @@ $(document).ready(function() {
                          });
                          console.log(dailydeceased);
                          if(screen.width <= 767) {
-                             stepValue = { step: 10};
+                             stepValue = { step: 15};
                          } else {
-                             stepValue = { step: 5};  
+                             stepValue = { step: 10};  
                          }
                  }
          
