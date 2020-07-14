@@ -28,9 +28,9 @@ var totalconf = [], initialdata = [];
                             });
                             console.log(totaldea);
                             if(screen.width <= 767) {
-                                stepValue = { step: 10};
+                                stepValue = { step: 20};
                             } else {
-                                stepValue = { step: 5};  
+                                stepValue = { step: 10};  
                             }
                     }
             
