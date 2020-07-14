@@ -1338,7 +1338,7 @@ fill: #035add!important;
         /*}*/
         #myacctable { margin-bottom: 30px; }
 
-        .indiaData .otherdata h1 { font-size: 24px; }
+        .indiaData .otherdata h1 { font-size: 26px; line-height: 35px; }
 
         .indiaData .otherdata { grid-template-columns: 33% 33% 33.9%; }
 
