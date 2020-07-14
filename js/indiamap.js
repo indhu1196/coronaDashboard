@@ -14,9 +14,10 @@ function drawIndiaMap(selector){
    
     // var colorScale = d3.scaleThreshold()
     // .domain([1, 180, 350, 530, 700, 890])
+    // .domain([0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000])
     // .range(["#fde8de", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C"]);
     var colorScale = d3.scaleThreshold()
-    .domain([0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000])
+    .domain([0, 2000 ,10000 ,20000, 40000, 70000, 90000, 100000, 120000])
     .range(["#fff5f0"  ,"#fee0d2","#fcbba1" ,"#fc9272" ,"#fb6a4a" ,"#ef3b2c" ,"#cb181d" ,"#a50f15" ,"#67000d"]);
     // .range(d3.schemeReds[6]);
     var tool_tip = d3.tip()
@@ -47,7 +48,7 @@ function drawIndiaMap(selector){
                 html = "<p>"+d.properties.ST_NM+"</p> "
                 
             
-                    html += "<p>Total Confirmed Cases: <span>"+ parseInt(fd[0]["totalIndianCases"]) +"</span></p> "
+                    html += "<p>Total Confirmed Cases: <span>"+ parseInt(fd[0]["totalIndianCases"]).toLocaleString('en-IN') +"</span></p> "
    
 
                 return html; 
