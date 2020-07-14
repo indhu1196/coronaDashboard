@@ -25,9 +25,9 @@
                         totalCases.reverse();
                         deathDate.reverse();
                             if(screen.width <= 767) {
-                                stepValue = { step: 13};
+                                stepValue = { step: 20};
                             } else {
-                                stepValue = { step: 5};  
+                                stepValue = { step: 15};  
                             }
                 // console.log("Deaths"+JSON.stringify(deathDate));
                 }
