@@ -25,11 +25,11 @@ function drawchart1(){
                 deathDate.reverse();
                 if (screen.width <= 767) {
                     stepValue = {
-                        step: 10
+                        step: 40
                     };
                 } else {
                     stepValue = {
-                        step: 10
+                        step: 35
                     };
                 }
                 // console.log("Deaths"+JSON.stringify(deathDate));

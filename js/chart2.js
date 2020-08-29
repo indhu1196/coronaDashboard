@@ -230,9 +230,9 @@ function loadData(filter,clicked) {
                 });
                     //console.log("TN DATA"+JSON.stringify(tn));
                     if(screen.width <= 767) {
-                        stepValue = { step: 10};
+                        stepValue = { step: 30};
                     } else {
-                        stepValue = { step: 8};  
+                        stepValue = { step: 35};  
                     }
             }
 			
