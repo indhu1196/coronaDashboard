@@ -505,16 +505,8 @@ border-bottom-right-radius: 8px;
 .right-chart .horstackchart .bar100 {
 	height: 48px;
 	background-color: #c6c6c5;
-	/*text-align: left;*/
+	text-align: left;
 	margin: 11px 0;
-	 -webkit-border-top-right-radius: 15px;
-    -webkit-border-bottom-right-radius: 15px;
-    -moz-border-radius-topright: 15px;
-    -moz-border-radius-bottomright: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    text-align: center;
-    color: transparent;
 }
 .horstackchart, .horstackchart div{
 	transition: all 1.5s;
@@ -523,8 +515,15 @@ border-bottom-right-radius: 8px;
 	height: 100%;
     width: 20%;
     background-color: #e67e22;
-	border-radius: 15px;
-	text-align: center;
+    /* border-radius: 15px; */
+    -webkit-border-top-right-radius: 15px;
+    -webkit-border-bottom-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -moz-border-radius-bottomright: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+    color: transparent;
 	
 }
 .horstackchart #baroutcome{
@@ -618,15 +617,11 @@ border-bottom-right-radius: 8px;
 }
 
 .stateDeaths {
-/*display: flex;*/
-/*            justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 0 10px;*/
-/*	background: #000000;*/
-    /*padding: 0px 20px;*/
+    margin: -10px 0 0 0;
+    padding: 5px 10px;
+    background: #000000;
     box-sizing: border-box;
-    /*border-radius: 6%;*/
-        border-radius: 15px;
+    border-radius: 15px;
 }
 .stateDeaths figure {
 	padding: 0;
