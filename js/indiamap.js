@@ -126,6 +126,9 @@ function drawIndiaMap(selector){
                 .on('mouseout', tool_tip.hide)
                 .on("click", function(d,i){
 
+                    $(".state").removeClass("active")
+                    $("."+d.properties.ST_CODE).addClass("active")
+
                     var fd = _.filter(indiaData, function(items){
                         return items.stateId === d.properties.ST_CODE
                     })
