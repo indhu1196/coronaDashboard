@@ -1,1 +1,1 @@
-# coronaDashboard
+# corona-dashboard

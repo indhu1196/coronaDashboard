@@ -86,7 +86,23 @@ var totalconf = [], initialdata = [];
                     data: fortest,
                     name: 'Confirmed Cases',
                     color: '#035add'
-                }]
+                }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500,
+                        },
+
+                        chartOptions: {
+
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
             });
 
 jQuery("#totconf").click(function(){

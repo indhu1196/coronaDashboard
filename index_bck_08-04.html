@@ -1,15 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta property="og:image" content="https://thefederal.com/wp-content/uploads/2020/03/coronavirus-dashboard.jpg" />
+    <meta property="og:image:secure_url" content="https://thefederal.com/wp-content/uploads/2020/03/coronavirus-dashboard.jpg" />
+    <meta property="og:image:width" content="911" />
+    <meta property="og:image:height" content="550" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
-	<link rel="stylesheet" href="css/style.css">
-	<!-- <link rel="stylesheet" href="css/style.css?v=1232020"> -->
-	<link rel="stylesheet" href="css/bootstrap-fullscreen-select.css?v=343434">
+	<link rel="stylesheet" href="css/style.css?v=1234576989998978949685">
+	<link rel="stylesheet" href="css/bootstrap-fullscreen-select.css?v=343437">
 	<style>
 		/* .dailydeathline{
 			position: relative;
@@ -20,7 +21,7 @@
 
 		.d3-tipforline {
 			line-height: 1;
-			padding: 2px 6px;
+			padding: 12px 6px;
 			background: rgba(59, 59, 59, 0.9);
 			font-family: 'Rubik', sans-serif;
 			color: #fff;
@@ -68,7 +69,7 @@
         <div class="worldmap"></div>
     </div> -->
     <div class="covidDash-wrapper">
-		<section class="dashboard-header" id="header">
+		<section class="dashboard-header">
 			<figure>
 				<img src="img/Asset2.png" alt="Covid" />
 			</figure>
@@ -82,17 +83,16 @@
 		</section>
 		<nav class="anchor-nav">
 			<ul>
-				<li><a href="https://covid19.thefederal.com/" style="background-color: #e20513;" target="_blank">Covid-19 Home</a></li>
 				<li><a href="#global">Global</a></li>
 				<li><a href="#world-impact">World Impact</a></li>
 				<li><a href="#india-impact">India Impact</a></li>
 				<li><a href="#daily-deaths">Daily Deaths</a></li>
 				<li><a href="#total-deaths">Total Deaths</a></li>
-				<li><a href="#faqs">FAQs</a></li>			
+				<li><a href="#faqs">FAQs</a></li>
 			</ul>
 		</nav>
-		<section class="total-affected points" id="global">
-			<h1 id="totAffected" class="loading"></h1>
+		<section class="total-affected"  id="global">
+			<h1 id="totAffected" ></h1>
 			<p>TOTAL AFFECTED PERSONS</p>
 		</section>
 		<section class="deaths-recoverData">
@@ -102,16 +102,16 @@
 				</figure>
 				<div class="deathCount">
 					<h2>Total Deaths</h2>
-					<h1 id="totDeath" class="loading points"></h1>
+					<h1 id="totDeath" ></h1>
 				</div>
 			</div>
 			<div class="recoverdata">
 				<figure>
 					<img src="img/Asset3.png" alt="total death">
 				</figure>
-				<div class="recoverCount respondpoints">
+				<div class="recoverCount">
 					<h2>Total Recovered</h2>
-					<h1 id="totRecovered" class="loading"></h1>
+					<h1 id="totRecovered" ></h1>
 				</div>
 			</div>
 		</section>
@@ -124,7 +124,7 @@
                      </div>
                  </div>
 				 <div class="totalData">
-				 	<div class="currentlyInfected points">
+				 	<div class="currentlyInfected">
 				 		<h2>Currently infected</h2>
 				 		<h1 id="currInfected">47,524</h1>
 				 	</div>
@@ -138,7 +138,7 @@
 				 	</div>
 				 </div>
 			</div>
-			<div class="right-chart greypoints" >
+			<div class="right-chart">
 				<h1>Cases with <br />outcome</h1>
 				<p id="outcome-cases">68,722</p>
 				<div class="horstackchart">
@@ -148,87 +148,13 @@
                 </div>
 			</div>
 		</section>
-		
-		<section class="world-impact" id="india-impact">
-			<h1>COVID-19 India impact</h1>
-			<div class="flexcontainer">
-				<div id="myacctable"></div>
-				<div class="indian-map-section">
-					<p>Click on a state</p>
-					<div class="indiaData">
-						<div class="country">
-							<h1 id="statename">China</h1>
-						</div>
-						<div class="otherdata">
-							<div class="totCases points">
-								<h2>Confirmed<br>cases</h2>
-								<h1 id="stateConfIndians">80,757</h1>
-							</div>
-							<div class="newCases respondpoints">
-								<h2>Cured /<br>Discharged</h2>
-								<h1 id="stateCured">22</h1>
-							</div>
-							<div class="stateDeaths">
-								<figure>
-									<img src="img/Asset6.png">
-								</figure>
-								<div class="contentcolumne">
-									<h2>Deaths</h2>
-									<h1 id="stateDead">22</h1>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-
-					<div class="indiamap"><button id="btn-for-india" style="background: #000000; color: #fff;position: absolute; right: 30%; top: 10%;"> All India</button></div>
-					<select class="dropdownstate" onchange="showStateData()"></select>
-					<ul class="legend">
-						<!-- "#FEE5D9", "#FDD5C3", "#FCA487", "#FA7254", "#E83A2E", "#BC171C" -->
-						<li><span style="background-color: #EEEEEE;"></span>0</li>
-						<li><span style="background-color: #fde8de;"></span>1-179</li>
-						<li><span style="background-color: #FDD5C3;"></span>180-349</li>
-						<li><span style="background-color: #FCA487;"></span>350-529</li>
-						<li><span style="background-color: #FA7254;"></span>530-699</li>
-						<li><span style="background-color: #E83A2E;"></span>700-889</li>
-						<li><span style="background-color: #BC171C;"></span>> 890</li>
-					</ul>
-					<!-- <figure class="highcharts-figure">
-						<div id="dailydeath-container"></div>
-					</figure> -->
-					<!-- <figure class="highcharts-figure">
-						<div id="totalDeath-container"></div>
-					</figure> -->
-				</div>
-			</div>
-			
-		</section>
-		<section class="indiadata-charts">
-			<div>
-				<h1>India Confirmed cases</h1>
-				<figure class="highcharts-figure">
-					<button id="dailyconfirmed" class="btn1 active">Daily</button>
-					<button id="totalconfirmed" class="btn1">Total</button>
-					<div id="dailyconfirmed-container"></div>
-				</figure>
-			</div>
-			<div>
-			 <h1>India Deaths</h1>
-			 <figure class="highcharts-figure">
-			   <button id="dailydeceased" class="btn2 active">Daily</button>
-			   <button id="totaldeceased" class="btn2">Total</button>
-			   <div id="dailydeceased-container"></div>
-			 </figure>
-			</div>
-		</section>
-        <section class="world-impact" id="world-impact">
+		<section class="world-impact" id="world-impact">
 			<h1>COVID-19 world impact</h1>
 			<p>Click on a country</p>
 			<div class="map-wrapper">
-				<div id="myearth"></div>
-				<!-- <div class="worldmap"></div>
-				<select class="dropdown" onchange="showCountryData()"></select> -->
-				<!-- <div class="countrywiseData">
+				<div class="worldmap"></div>
+				<select class="dropdown" onchange="showCountryData()"></select>
+                <div class="countrywiseData">
 					<div class="country">
 						<h2>Country,  Other</h2>
 						<h1 id="countryname">China</h1>
@@ -241,47 +167,117 @@
 						<h2>New Cases</h2>
 						<h1 id="countrynewcases">22</h1>
 					</div>
-				</div> -->
+				</div>
+			</div>
+		</section>
+		<section class="dangerData">
+			<div class="totalandNew">
+				<figure>
+					<img src="img/Asset6.png">
+				</figure>
+				<div class="deathCounts">
+					<div class="topCounts">
+						<figure>
+							<img src="img/Asset4.png">
+						</figure>
+						<div class="countValue">
+							<h2>Total Deaths</h2>
+							<h1 id="countrytotaldeaths">3,136</h1>
+						</div>
+					</div>
+					<div class="downCounts">
+						<figure>
+							<img src="img/Asset11.png">
+						</figure>
+						<div class="countValue">
+							<h2>New Deaths</h2>
+							<h1 id="countrynewdeaths">+17</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="criticalData">
+				<div class="recoverCounts">
+					<h2>Total Recovered</h2>
+					<h1 id="countrytotalRecovered">60,104</h1>
+				</div>
+				<div class="criticalCounts">
+					<h2>Serious/critical</h2>
+					<h1 id="countrySerious">4,794</h1>
+				</div>
+			</div>
+		</section>
+		<section class="world-impact"  id="india-impact">
+			<h1>COVID-19 India impact</h1>
+			<p>Click on a state</p>
+			<ul class="legend">
+				<li><span style="background-color: #EEEEEE;"></span>0</li>
+				<li><span style="background-color: #FEE5D9;"></span>1-5</li>
+				<li><span style="background-color: #FCBBA1;"></span>6-10</li>
+				<li><span style="background-color: #FC9272;"></span>11-25</li>
+				<li><span style="background-color: #FB6A4A;"></span>26-100</li>
+				<li><span style="background-color: #DE2D26;"></span>101-1000</li>
+				<li><span style="background-color: #A50F15;"></span>> 1000</li>
+			</ul>
+			<div class="map-wrapper">
+				<div class="indiamap"><small>Source: Ministry of health</small></div>
+				<select class="dropdownstate" onchange="showStateData()"></select>
+				<div class="countrywiseData indiaData">
+					<div class="country">
+						<h2>State</h2>
+						<h1 id="statename">China</h1>
+					</div>
+					<div class="otherdata">
+						<div class="totCases">
+							<h2>Total confirmed cases<h2>
+							<h1 id="stateConfIndians">80,757</h1>
+						</div>
+						<!--<div class="totCases">
+							<h2>Total confirmed cases (Foreigners)</h2>
+							<h1 id="stateConfForeigners">22</h1>
+						</div>-->
+						<div class="newCases">
+							<h2>Cured / Discharged</h2>
+							<h1 id="stateCured">22</h1>
+						</div>
+						<div class="stateDeaths">
+							<figure>
+								<img src="img/Asset6.png">
+							</figure>
+							<div class="contentcolumne">
+								<h2>Deaths</h2>
+								<h1 id="stateDead">22</h1>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 		</section>
-		<section class="dailyDeaths" id="daily-deaths">
-			<h1>Global Deaths</h1>
-			<div class="chartcontent">
-				<p>of Novel Coronavirus (2019-nCoV)</p>
-				<!-- <div class="chartnav">
-					<button class="chartbtn active">Chart</button>
-					<button class="tablebtn">Table</button>
-				</div> -->
-			</div>
-			<!-- <div class="dailydeathbar"></div> -->
-			<figure class="highcharts-figure dailydeathbar" style="position: relative">
-				<button id="globaldaily" class="btn1 active">Daily</button>
-				<button id="globaltotal" class="btn1">Total</button>
-				<div class="chartnav" style="position: absolute;right: 2%;z-index: 999;top: 5%;">
-					<button class="chartbtn active">Chart</button>
-					<button class="tablebtn">Table</button>
-				</div>
-				<div id="dailydeath-container" style="margin-top: 25px"></div>
-			</figure>
-			<div class="table" id="dailydeathstable" style="display:none"></div>
-			<div class="table" id="totaldeathstable" style="display:none"></div>
-		</section>
-		<section class="totalDeaths" id="total-deaths" style="display: none;">
-            <h1>Global Total Deaths</h1>
-			<div class="chartcontent">
-				<p>of Novel Coronavirus (2019-nCoV)</p>
-				<div class="chartnav">
-					<button class="chartbtn active">Chart</button>
-					<button class="tablebtn">Table</button>
-				</div>
-			</div>
-			<!-- <div class="dailydeathline"></div> -->
-			<figure class="highcharts-figure dailydeathline">
-				<div id="totalDeath-container"></div>
-			</figure>
-			<div class="table" id="totaldeathstable" style="display:none"></div>
-		</section>
+	<section class="dailyDeaths" id="daily-deaths">
+            <h1>Daily Deaths</h1>
+            <div class="chartcontent">
+                <p>of Novel Coronavirus (2019-nCoV)</p>
+                <div class="chartnav">
+                    <button class="chartbtn active">Chart</button>
+                    <button class="tablebtn">Table</button>
+                </div>
+            </div>
+            <div class="dailydeathbar"></div>
+            <div class="table" id="dailydeathstable" style="display:none"></div>
+        </section>
+        <section class="totalDeaths" id="total-deaths">
+            <h1>Total Deaths</h1>
+            <div class="chartcontent">
+                <p>of Novel Coronavirus (2019-nCoV)</p>
+                <div class="chartnav">
+                    <button class="chartbtn active">Chart</button>
+                    <button class="tablebtn">Table</button>
+                </div>
+            </div>
+            <div class="dailydeathline"></div>
+            <div class="table" id="totaldeathstable" style="display:none"></div>
+        </section>
 		<section class="faqs" id="faqs">
 			<h1>FAQs</h1>
 			<p>The spreading fear of coronavirus and the increasing infection rate, taking the total number of positive cases in India to 115 (as of Monday), have raised more questions on its nature and ways to avoid or mitigate the pandemic. Here is a lowdown on the virus, how to avoid contracting it and seeking help in case of suspected infection.</p>
@@ -398,96 +394,32 @@
 
 		</section>
 	</div>
+	</div>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://thefederal.com/embed/common-js/d3.v4.min.js"></script>
 	<script src="js/d3-tip.js"></script>
-	<script src="https://d3js.org/topojson.v2.min.js"></script>
-	<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-	<script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
-	<script src="js/miniature.earth.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<!-- <script src="js/test-api.js"></script> -->
-	<script src="js/loadData.js"></script>
-    <script src="js/globe.js"></script>
-    <script src="js/accordion.js"></script>
-    <script src="js/functions.js"></script>
-	<script src="js/table.js"></script>
-	<script src="js/accordion-table.js"></script>
-    <script src="js/barchart.js"></script>
-	<script src="js/linechart.js"></script>
-	<script src="js/indiadata.js"></script>
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-    <!-- <script src="js/chart1.js"></script> -->
-    <script src="js/chart2.js"></script>
-    <script src="js/globaldata.js"></script>
-    <script src="js/map.js?v=13320205555"></script>
-    <script src="js/bootstrap-fullscreen-select.js?v=3434"></script>
-    <script src="js/indiamap.js"></script>
-	<script type='text/javascript'>
-	$("#globaldaily").click(function(){
-		$(".dailyDeaths .chartbtn").addClass("active")
-		$(".dailyDeaths .tablebtn").removeClass("active")
-		$("#dailydeath-container").css("display", "block")
-		$("#dailydeathstable").css("display", "none")
-		$("#totaldeathstable").css("display","none")
-	})
-	$("#globaltotal").click(function(){
-		$(".dailyDeaths .chartbtn").addClass("active")
-		$(".dailyDeaths .tablebtn").removeClass("active")
-		$("#dailydeath-container").css("display", "block")
-		$("#dailydeathstable").css("display", "none")
-		$("#totaldeathstable").css("display","none")
-	})
-		$(".dailyDeaths .tablebtn").on("click", function(){
-			if($("#globaltotal").hasClass("active")){
-				$("#dailydeathstable").css("display", "none")
-				$("#totaldeathstable").css("display","block")
-			} else {
-				$("#dailydeathstable").css("display", "block")
-				$("#totaldeathstable").css("display","none")
-			}
-			// $("#dailydeathstable").css("display", "block")
-			$("#dailydeath-container").css("display", "none")
-			$(".chartnav button").removeClass("active")
-			$(this).addClass("active")
-		});
-		$(".dailyDeaths .chartbtn").on("click", function(){
-			$("#dailydeathstable").css("display", "none")
-			$("#dailydeath-container").css("display", "block")
-			$(".chartnav button").removeClass("active")
-			$(this).addClass("active")
-		});
-				
-		
-		// $(".totalDeaths .tablebtn").on("click", function(){
-		// 	$("#dailydeathstable").css("display","none")
-		// 	$("#totaldeathstable").css("display", "block")
-		// 	$(".dailydeathline").css("display", "none")
-		// 	$(".totalDeaths button").removeClass("active")
-		// 	$(this).addClass("active")
-		// });
-		// $(".totalDeaths .chartbtn").on("click", function(){
-		// 	$("#totaldeathstable").css("display", "none")
-		// 	$(".dailydeathline").css("display", "block")
-		// 	$(".totalDeaths button").removeClass("active")
-		// 	$(this).addClass("active")
-		// });
-		
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://thefederal.com/embed/common-js/underscore-min.js"></script>
+    <script src="js/bootstrap-fullscreen-select.js?v=4378744"></script>
+    <script src="js/functions.js?v=4343477394585889858"></script>
+     <script src="js/accordion.js?v=5559"></script>
+    <script src="js/indiamap.js?v=25537586487838"></script>
+    <script src="js/barchart.js?v=1080"></script>
+    <script src="js/linechart.js?v=3274"></script>
+    <script src="js/table.js?v=3274"></script>
+    <script src="js/loadData.js?v=133202032447"></script>
+    <script src="js/map.js?v=15343202095592259577365"></script>
+    <script type='text/javascript'>
 		var defaultMapData = countrywisedata.filter(function(item){
             return item['countryId'] === "156" ;
         })
-		var defaultIndiaMapData = indiaData.filter(function(item){
-			// console.log(item);
-			
+        var defaultIndiaMapData = indiaData.filter(function(item){
             return item['stateId'] === "S13" ;
         })
         var filterData = countrywisedata.filter(function(item){
-			if( item["countryId"] !== "NULL"){
-				return item["Total Cases"] !== "NULL";
-			}
+            return item['Total Cases'] !== "NULL" ;
         })
-        
 		var formatComma = d3.format(",")
 		function numberWithCommas(x) {
             x=x.toString();
@@ -498,8 +430,8 @@
                 lastThree = ',' + lastThree;
             res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
             return res;
-		}
-		d3.select("#lastupdatedtime").text(lastupdate)
+        }
+        d3.select("#lastupdatedtime").text(lastupdate)
 		const renderCard = () => {
 			d3.select("#totAffected").text(numberWithCommas(globalTotalData[0]["Total Cases"]))
 			d3.select("#totDeath").text(numberWithCommas(globalTotalData[0]["Total Deaths"]))
@@ -514,48 +446,45 @@
 			$("#totRecovered").removeClass('loading');
 
 		}
-		// Default World data =======================================
-		// d3.select("#countryname").text(defaultMapData[0].Country)
-        // function animator(fieldName,fieldId) {
-        //     if(defaultMapData[0][fieldName] !== "NULL" ){
-        //             var countrytotalcases = d3.select("#"+fieldId).text(0)
-        //             countrytotalcases.transition()
-        //                 .tween("text", function() {
-        //                     var selection = d3.select(this);    // selection of node being transitioned
-        //                     var start = d3.select(this).text(); // start value prior to transition
-        //                     var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
-        //                     var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
-        //                     return function(t) { 
-        //                             selection.text(Math.round(interpolator(t)));
-        //                     };  // return value
-        //                 })
-        //                 .duration(1000)
-        //                 .on("end", function() {
-        //                     d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
-        //                 });
+		// Default data =======================================
+		d3.select("#countryname").text(defaultMapData[0].Country)
+        function animator(fieldName,fieldId) {
+            if(defaultMapData[0][fieldName] !== "NULL" ){
+                    var countrytotalcases = d3.select("#"+fieldId).text(0)
+                    countrytotalcases.transition()
+                        .tween("text", function() {
+                            var selection = d3.select(this);    // selection of node being transitioned
+                            var start = d3.select(this).text(); // start value prior to transition
+                            var end = parseInt(defaultMapData[0][fieldName]);                     // specified end value
+                            var interpolator = d3.interpolateNumber(start,end); // d3 interpolator
+                            return function(t) { 
+                                    selection.text(Math.round(interpolator(t)));
+                            };  // return value
+                        })
+                        .duration(1000)
+                        .on("end", function() {
+                            d3.select("#"+fieldId).text(numberWithCommas(d3.select("#"+fieldId).text()));
+                        });
 
-        //         }else{
-        //             d3.select("#"+fieldId).text("-")
-        //         }
-        // }      
-        // animator("Total Cases","countrytotalcases");
-        // animator("New Cases","countrynewcases");
-        // animator("Total Deaths","countrytotaldeaths");
-        // animator("New Deaths","countrynewdeaths");
-        // animator("Total Recovered","countrytotalRecovered");       
-		// animator("Serious","countrySerious"); 
+                }else{
+                    d3.select("#"+fieldId).text("-")
+                }
+        }      
+        animator("Total Cases","countrytotalcases");
+        animator("New Cases","countrynewcases");
+        animator("Total Deaths","countrytotaldeaths");
+        animator("New Deaths","countrynewdeaths");
+        animator("Total Recovered","countrytotalRecovered");       
+        animator("Serious","countrySerious");       
+        
+        // Default India Data ================================
 		
-		// Default India Data ================================
-		d3.select("#statename").text("India")
-		animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
-		// animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
-		animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
-		animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
-
-
-
-
-
+		d3.select("#statename").text(defaultIndiaMapData[0].StateName)
+		animatedFormatData(defaultIndiaMapData[0]["totalIndianCases"],"#stateConfIndians")
+		animatedFormatData(defaultIndiaMapData[0]["totalForeignCases"],"#stateConfForeigners")
+		animatedFormatData(defaultIndiaMapData[0]["Cured"],"#stateCured")
+		animatedFormatData(defaultIndiaMapData[0]["Death"],"#stateDead")
+		
 		//===================================================
         // Mild and Critical Chart
         var recovered_p = currentData[0]["recovered_p"];
@@ -572,15 +501,41 @@
         d3.select("#baroutcome")
             .style("width", recovered_p)
             .text(currentData[0]["recovered_p"]+"%")
-		// drawWorldMap(".worldmap");
-		drawIndiaMap(".indiamap")
-		createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
-		createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
-        // drawBarchart(".dailydeathbar")
-		// drawLinechart(".dailydeathline")
-		drawTable(dailyDeathData, "#dailydeathstable")
-		drawTable(dailyTotalDeathData, "#totaldeathstable")
+            
+        drawWorldMap(".worldmap");
+        drawIndiaMap(".indiamap");
+        createDropDowns(".dropdown", filterData, "countryId", "Country", "world")
+        createDropDowns(".dropdownstate", indiaData, "stateId", "StateName", "india")
+        drawBarchart(".dailydeathbar")
+		drawLinechart(".dailydeathline")
 		setTimeout(() => {	renderCard();	}, 1000);
+		$(".dailyDeaths .tablebtn").on("click", function(){
+            $("#dailydeathstable").css("display", "block")
+            $(".dailydeathbar").css("display", "none")
+            $(".dailyDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        $(".dailyDeaths .chartbtn").on("click", function(){
+            $("#dailydeathstable").css("display", "none")
+            $(".dailydeathbar").css("display", "block")
+            $(".dailyDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        
+        $(".totalDeaths .tablebtn").on("click", function(){
+            $("#totaldeathstable").css("display", "block")
+            $(".dailydeathline").css("display", "none")
+            $(".totalDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        $(".totalDeaths .chartbtn").on("click", function(){
+            $("#totaldeathstable").css("display", "none")
+            $(".dailydeathline").css("display", "block")
+            $(".totalDeaths button").removeClass("active")
+            $(this).addClass("active")
+        });
+        drawTable(dailyDeathData,'#dailydeathstable')
+		drawTable(dailyTotalDeathData,'#totaldeathstable')
     </script>
 </body>
 </html>

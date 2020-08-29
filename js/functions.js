@@ -17,7 +17,6 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
             .data(dropdowndata).enter()
             .append('option')
             .attr("value", function (d) { 
-                // console.log(":d",d)
                 return d[contentlabel]; 
             })
 			.attr("data-id", function (d) { 
@@ -47,7 +46,7 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
                 });
             })
             .text(function (d) { 
-                // console.log(":d",countrynames[d[valuelabel]])
+               // console.log(":d",countrynames[d[valuelabel]])
                 // console.log(":d",d['stateId'])
                 // return d[contentlabel]; 
                 return countrynames[d[valuelabel]]; 
@@ -73,9 +72,10 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
 				}
 			});
     }
-   
+    
    
 }
+
 
 function animatedFormatData(inputdata,selector) {
     // var datapoint = parseInt(inputdata)
@@ -145,9 +145,10 @@ function showStateData(){
     console.log("selectedValue", countrynames[selectedValue]);
     $(".state").removeClass("active")
     $("."+selectedValue).addClass("active")
+
     if(fdContent[0] !== undefined){
         // return colorScale(fd[0]["totalIndianCases"]);
-        d3.select("#statename").text(countrynames[selectedValue])
+         d3.select("#statename").text(countrynames[selectedValue])
         animatedFormatData(fdContent[0]["totalIndianCases"],"#stateConfIndians")
         animatedFormatData(fdContent[0]["totalForeignCases"],"#stateConfForeigners")
         animatedFormatData(fdContent[0]["Cured"],"#stateCured")
@@ -155,3 +156,4 @@ function showStateData(){
     }
 
 }
+

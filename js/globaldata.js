@@ -25,9 +25,10 @@
                         totalCases.reverse();
                         deathDate.reverse();
                             if(screen.width <= 767) {
-                                stepValue = { step: 20};
+                                stepValue = { step: 30};
+                                
                             } else {
-                                stepValue = { step: 15};  
+                                stepValue = { step: 35};  
                             }
                 // console.log("Deaths"+JSON.stringify(deathDate));
                 }
@@ -49,9 +50,9 @@
                     totalDeaths.reverse();
                     totdeathDate.reverse();
                         if(screen.width <= 767) {
-                            stepValue = { step: 13};
+                            stepValue = { step: 30};
                         } else {
-                            stepValue = { step: 5};  
+                            stepValue = { step: 35};  
                         }
                      }
     
@@ -126,6 +127,7 @@
                 });
                 
                 $("#globaltotal").click(function(){
+                    console.log(stepValue);
                     Highcharts.chart('dailydeath-container', {
                 exporting: {
                     buttons: {

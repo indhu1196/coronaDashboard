@@ -1,128 +1,3 @@
-// function drawchart2(){
-//     $(document).ready(function() {
-//         var totalDeaths = [];
-//         var totdeathDate = [];
-//         var dates = [];
-//         $.ajax({
-//             'async': false,
-//             'global': false,
-//             'dataType': 'json',
-//             'url': 'https://thefederal.com/api/scraper.php?m=Corona&t=totalDeaths',
-//             'success': function(data) {
-//                 //console.log(data)
-//                 data.forEach(function(key, value) {
-//                     totalDeaths.push(parseInt(key["Total Deaths"]));
-//                     totdeathDate.push(key["Date"]);
-//                 });
-    
-//                 totalDeaths.reverse();
-//                 totdeathDate.reverse();
-//                 if (screen.width <= 767) {
-//                     stepValue = {
-//                         step: 10
-//                     };
-//                 } else {
-//                     stepValue = {
-//                         step: 10
-//                     };
-//                 }
-//                 // console.log("Deaths"+JSON.stringify(totdeathDate));
-//             }
-    
-//         });
-    
-//         Highcharts.chart('totalDeath-container', {
-//     exporting: {
-//                 buttons: {
-//                     customButton: {
-//                         text: 'Linear',
-//                         onclick: function() {
-//                             this.yAxis[0].update({
-//                                 type: 'linear'
-//                             });
-//                         }
-//                     },
-//                     customButton2: {
-//                         text: 'Logarithmic',
-//                         onclick: function() {
-//                             this.yAxis[0].update({
-//                                 type: 'logarithmic'
-//                             });
-//                         }
-//                     },
-//                 }
-//             },
-//             chart: {
-//                 height: 500
-//             },
-//             title: {
-//                 text: ''
-//             },
-    
-//             subtitle: {
-//                 text: ''
-//             },
-    
-//             yAxis: {
-    
-//                 title: {
-//                     text: 'Number of Deaths'
-//                 }
-//             },
-    
-//             /* xAxis: {
-//              type: 'datetime',
-//                  accessibility: {
-//                      rangeDescription: 'Range: 2010 to 2017'
-//                  }
-//              },
-    
-    
-//              plotOptions: {
-//                  series: {
-//                      label: {
-//                          connectorAllowed: false
-//                      },
-//                      pointStart: Date.UTC(2020, 0, 02),
-//                      pointInterval: 24 * 3600 * 1000,
-//                  }
-//              },*/
-//             xAxis: {
-    
-//                 type: 'datetime',
-//                 tickPixelInterval: 400,
-//                 categories: totdeathDate,
-//                 labels: stepValue
-//             },
-    
-//             series: [{
-//                 name: 'Total Deaths',
-//                 data: totalDeaths
-//             }, ],
-    
-//             responsive: {
-//                 rules: [{
-//                     condition: {
-//                         maxWidth: 500,
-//                     },
-    
-//                     chartOptions: {
-    
-//                         legend: {
-//                             layout: 'horizontal',
-//                             align: 'center',
-//                             verticalAlign: 'bottom'
-//                         }
-//                     }
-//                 }]
-//             }
-    
-//         });
-//     });
-// }
-
-// drawchart2();
-
 $(function () {
     var start = [];
     var an= [], ap = [],ar = [],as = [],br = [],ch = [],ct = [],dd = [],dl = [],dn = [],ga = [],gj = [],hp = [],hr = [],jh = [],jk = [],ka = [],kl = [],la = [],ld = [],mh = [],ml = [],mn = [],mp = [],mz = [],nl = [],or = [],pb = [],py = [],rj = [],sk = [],tg = [],tn = [],tr = [], up = [],ut = [],wb = [] ;
@@ -295,123 +170,133 @@ Highcharts.addEvent(Highcharts.Series, 'afterTranslate', function() {
         }]
     });
     // The select action
-    $("#selectData").on('change', function(){
-        var selVal = $("#selectData").val();
-        if(selVal == "an" || selVal == '') {
+if ( $(window).width() < 767 ) {
+$('#selectData').mobileSelect({        
+            onClose: function(){
+                    loadChartData();
+            }
+        });
+}
+  function loadChartData() {
+ var selVal = $("#selectData").val();
+        console.log(selVal);
+        if(selVal == "Andaman and Nicobar Islands" || selVal == '') {
             chart2.series[0].setData(an);
         }
-        else if (selVal == "ap") {
+        else if (selVal == "Andhra Pradesh") {
             chart2.series[0].setData(ap);
         }
-        else if (selVal == "ar") {
+        else if (selVal == "Arunachal Pradesh") {
             chart2.series[0].setData(ar);
         }
-        else if (selVal == "as") {
+        else if (selVal == "Assam") {
             chart2.series[0].setData(as);
         }
-        else if (selVal == "br") {
+        else if (selVal == "Bihar") {
             chart2.series[0].setData(br);
         }
-        else if (selVal == "ch") {
+        else if (selVal == "Chandigarh") {
             chart2.series[0].setData(ch);
         }
-        else if (selVal == "ct") {
+        else if (selVal == "Chattisgarh") {
             chart2.series[0].setData(ct);
         }
-        else if (selVal == "dd") {
+        else if (selVal == "Daman and Diu") {
             chart2.series[0].setData(dd);
         }
-        else if (selVal == "dl") {
+        else if (selVal == "Delhi") {
             chart2.series[0].setData(dl);
         }
-        else if (selVal == "dn") {
+        else if (selVal == "Dadra and Nagar Haveli") {
             chart2.series[0].setData(dn);
         }
-        else if (selVal == "ga") {
+        else if (selVal == "Goa") {
             chart2.series[0].setData(ga);
         }
-        else if (selVal == "gj") {
+        else if (selVal == "Gujarat") {
             chart2.series[0].setData(gj);
         }
-        else if (selVal == "hp") {
+        else if (selVal == "Himachal Pradesh") {
             chart2.series[0].setData(hp);
         }
-        else if (selVal == "hr") {
+        else if (selVal == "Haryana") {
             chart2.series[0].setData(hr);
         }
-        else if (selVal == "jh") {
+        else if (selVal == "Jharkhand") {
             chart2.series[0].setData(jh);
         }
-        else if (selVal == "jk") {
+        else if (selVal == "Jammu and Kashmir") {
             chart2.series[0].setData(jk);
         }
-        else if (selVal == "ka") {
+        else if (selVal == "Karnataka") {
             chart2.series[0].setData(ka);
         }
-        else if (selVal == "kl") {
+        else if (selVal == "Kerala") {
             chart2.series[0].setData(kl);
         }
-        else if (selVal == "la") {
+        else if (selVal == "Ladakh") {
             chart2.series[0].setData(la);
         }
-        else if (selVal == "ld") {
+        else if (selVal == "Lakshadweep Islands") {
             chart2.series[0].setData(ld);
         }
-        else if (selVal == "mh") {
+        else if (selVal == "Maharashtra") {
             chart2.series[0].setData(mh);
         }
-        else if (selVal == "ml") {
+        else if (selVal == "Meghalaya") {
             chart2.series[0].setData(ml);
         }
-        else if (selVal == "mn") {
+        else if (selVal == "Manipur") {
             chart2.series[0].setData(mn);
         }
-        else if (selVal == "mp") {
+        else if (selVal == "Madhya Pradesh") {
             chart2.series[0].setData(mp);
         }
-        else if (selVal == "mz") {
+        else if (selVal == "Mizoram") {
             chart2.series[0].setData(mz);
         }
-        else if (selVal == "nl") {
+        else if (selVal == "Nagaland") {
             chart2.series[0].setData(nl);
         }
-        else if (selVal == "or") {
+        else if (selVal == "Odisha") {
             chart2.series[0].setData(or);
         }
-        else if (selVal == "pb") {
+        else if (selVal == "Punjab") {
             chart2.series[0].setData(pb);
         }
-        else if (selVal == "py") {
+        else if (selVal == "Pondicherry") {
             chart2.series[0].setData(py);
         }
-        else if (selVal == "rj") {
+        else if (selVal == "Rajasthan") {
             chart2.series[0].setData(rj);
         }
-        else if (selVal == "sk") {
+        else if (selVal == "Sikkim") {
             chart2.series[0].setData(sk);
         }
-        else if (selVal == "tg") {
+        else if (selVal == "Telangana") {
             chart2.series[0].setData(tg);
         }
-        else if (selVal == "tn") {
+        else if (selVal == "Tamil Nadu") {
             chart2.series[0].setData(tn);
         }
-        else if (selVal == "tr") {
+        else if (selVal == "Tripura") {
             chart2.series[0].setData(tr);
         }
-        else if (selVal == "tt") {
+        else if (selVal == "All India") {
             chart2.series[0].setData(tt);
         }
-        else if (selVal == "up") {
+        else if (selVal == "Uttar Pradesh") {
             chart2.series[0].setData(up);
         }
-        else if (selVal == "ut") {
+        else if (selVal == "Uttarakhand") {
             chart2.series[0].setData(ut);
         }
-        else if (selVal == "wb") {
+        else if (selVal == "West Bengal") {
             chart2.series[0].setData(wb);
         }
-    });
+}
 
-    
+$("#selectData").on('change', function(){
+    loadChartData();
+});
 });
