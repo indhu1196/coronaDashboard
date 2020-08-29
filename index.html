@@ -473,6 +473,7 @@
 
          $('.allIndia').on("click", function(){
             d3.select("#statename").text("India")
+            $(".state").removeClass("active")
             animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
             // animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
             animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
