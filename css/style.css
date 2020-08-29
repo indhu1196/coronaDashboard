@@ -566,6 +566,10 @@
 	display: none;
 }
 
+.state.active{
+    fill: #000000;
+}
+
 .state:hover{
 	fill: #000000;
 	cursor: pointer;

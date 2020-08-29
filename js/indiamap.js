@@ -91,7 +91,10 @@ function drawIndiaMap(selector){
         g.selectAll(".state")
             .data(statewise).enter().append("path")
                 .attr("d", geoPath)
-                .attr("class", "state")
+                .attr("class", function(d, i){
+                    // console.log(d.properties.ST_CODE, d.properties.ST_NM)
+                    return "state "+ d.properties.ST_CODE
+                })
                 .attr("stroke", "#000000")
                 .attr("stroke-width", 0.2)
                 .attr('fill', function(d,i){
@@ -138,7 +141,7 @@ function drawIndiaMap(selector){
                     
                     if(fd[0] !== undefined){
                         // return colorScale(fd[0]["totalIndianCases"]);
-                            d3.select("#statename").text(fd[0].StateName)
+                            d3.select("#statename").text(countrynames[d.properties.ST_CODE])
                             animatedFormatData(fd[0]["totalIndianCases"],"#stateConfIndians")
                             // animatedFormatData(fd[0]["totalForeignCases"],"#stateConfForeigners")
                             animatedFormatData(fd[0]["Cured"],"#stateCured")

@@ -1,28 +1,4 @@
-/*function createDropDowns(selector, dropdowndata){
-    // console.log("dropdowndata", dropdowndata);
-
-    var select = d3.select(selector)
-    select.html(null);
-      var options = select.selectAll('option')
-            .data(dropdowndata).enter()
-            .append('option')
-            .attr("value", function (d) { 
-                return d["countryId"]; 
-            })
-            .each(function(d) {
-            var header = d3.select(this);
-                d3.keys(d).forEach(function(key) {
-                    if(d["Country"]=="China")
-                        header.attr("selected", 'selected');
-                });
-            })
-            .text(function (d) { 
-                return d["Country"]; 
-            });  
-        
-   
-}
-*/
+var countrynames = {"S01": "Andhra Pradesh", "S02": "Arunanchal Pradesh", "S03": "Assam", "S04": "Bihar", "S05": "Goa", "S06": "Gujarat", "S07": "Haryana", "S08": "Himachal Pradesh", "S09": "Jammu & Kashmir", "S10": "Karnataka", "S11": "Kerala", "S12": "Madhya Pradesh", "S13": "Maharashtra", "S14": "Manipur", "S15": "Meghalaya", "S16": "Mizoram", "S17": "Nagaland", "S18": "Odisha", "S19": "Punjab", "S20": "Rajasthan", "S21": "Sikkim", "S22": "Tamil Nadu", "S23": "Tripura", "S24": "Uttar Pradesh", "S25": "West Bengal", "S26": "Chhattisgarh", "S27": "Jharkhand", "S28": "Uttarakhand", "S29": "Telangana", "U01": "Andaman & Nicobar Islands", "U02": "Chandigarh", "U03": "Dadra & Nagar Haveli", "U04": "Daman & Diu", "U05": "Delhi", "U06": "Lakshadweep", "U07": "Puducherry", "U08": "Ladakh" }
 function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type){
     // console.log("dropdowndata", dropdowndata);
     if(type === "india"){
@@ -41,6 +17,7 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
             .data(dropdowndata).enter()
             .append('option')
             .attr("value", function (d) { 
+                // console.log(":d",d)
                 return d[contentlabel]; 
             })
 			.attr("data-id", function (d) { 
@@ -70,7 +47,10 @@ function createDropDowns(selector, dropdowndata, valuelabel, contentlabel, type)
                 });
             })
             .text(function (d) { 
-                return d[contentlabel]; 
+                // console.log(":d",countrynames[d[valuelabel]])
+                // console.log(":d",d['stateId'])
+                // return d[contentlabel]; 
+                return countrynames[d[valuelabel]]; 
             });  
 
         // document.querySelector(selector).selectedIndex = "24";
@@ -162,11 +142,12 @@ function showStateData(){
         return d["stateId"] === selectedValue;
     });
     
-    console.log("selectedValue", fdContent[0]);
-
+    console.log("selectedValue", countrynames[selectedValue]);
+    $(".state").removeClass("active")
+    $("."+selectedValue).addClass("active")
     if(fdContent[0] !== undefined){
         // return colorScale(fd[0]["totalIndianCases"]);
-        d3.select("#statename").text(fdContent[0].StateName)
+        d3.select("#statename").text(countrynames[selectedValue])
         animatedFormatData(fdContent[0]["totalIndianCases"],"#stateConfIndians")
         animatedFormatData(fdContent[0]["totalForeignCases"],"#stateConfForeigners")
         animatedFormatData(fdContent[0]["Cured"],"#stateCured")
