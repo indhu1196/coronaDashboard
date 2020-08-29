@@ -163,7 +163,7 @@
 }
 .covidDash-wrapper .total-affected h1#totAffected {
 	font-family: 'Rubik', sans-serif;
-	font-size: 170px;
+	font-size: 160px;
 	line-height: 170px;
 	/*line-height: 236px;*/
 	font-weight: 400;
@@ -206,7 +206,7 @@
 }
 .deathdata h1, .recoverdata h1 {
 	font-family: 'Rubik', sans-serif;
-	font-size: 80px;
+	font-size: 70px;
 	line-height: 90px;
 	font-weight: 300;
 	margin: 0 auto;
@@ -358,7 +358,7 @@
 }
 .barchart .right-chart p {
 	font-family: 'Rubik', sans-serif;
-	font-size: 45px;
+	font-size: 35px;
 	line-height: 55px;
 	font-weight: 700;
 	margin: 0 auto;
@@ -480,14 +480,28 @@
 }
 .horstackchart .bar100{
     width: 100%;
-	border-radius: 15px;
+    /* border-radius: 15px; */
+    -webkit-border-top-left-radius: 15px;
+    -webkit-border-bottom-left-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+    -moz-border-radius-bottomleft: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    -webkit-border-top-right-radius: 8px;
+-webkit-border-bottom-right-radius: 8px;
+-moz-border-radius-topright: 8px;
+-moz-border-radius-bottomright: 8px;
+border-top-right-radius: 8px;
+border-bottom-right-radius: 8px;
 	
 }
 
 .left-chart .horstackchart .bar100 {
 	height: 75px;
 	background-color: #f8b133;
-	text-align: right;
+    text-align: right;
+    
 }
 
 .right-chart .horstackchart .bar100 {
@@ -503,18 +517,31 @@
 	height: 100%;
     width: 20%;
     background-color: #e67e22;
-	border-radius: 15px;
-	text-align: center;
+    /* border-radius: 15px; */
+    -webkit-border-top-right-radius: 15px;
+    -webkit-border-bottom-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -moz-border-radius-bottomright: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    text-align: center;
+    color: transparent;
 	
 }
 .horstackchart #baroutcome{
 	height: 100%;
     width: 20%;
     background-color: #828282;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     text-align: left;
     padding: 0 0 0 11px;
     /* box-sizing: border-box; */
+    -webkit-border-top-left-radius: 15px;
+    -webkit-border-bottom-left-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+    -moz-border-radius-bottomleft: 15px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
 	
 }
 
@@ -595,14 +622,11 @@
 }
 
 .stateDeaths {
-display: flex;
-            justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-	background: #000000;
-    /*padding: 0px 20px;*/
+    margin: -10px 0 0 0;
+    padding: 5px 10px;
+    background: #000000;
     box-sizing: border-box;
-    border-radius: 6%;
+    border-radius: 15px;
 }
 .stateDeaths figure {
 	padding: 0;
@@ -920,7 +944,7 @@ svg.india.map {
 }
 .indiaData .otherdata h1 {
     font-family: 'Rubik', sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     line-height: 45px;
     font-weight: 400;
     margin: 0 auto;

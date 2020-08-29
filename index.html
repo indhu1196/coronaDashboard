@@ -161,9 +161,9 @@
                            <h1 id="stateCured">22</h1>
                         </div>
                         <div class="stateDeaths">
-                           <figure>
+                           <!-- <figure>
                               <img src="img/Asset6.png">
-                           </figure>
+                           </figure> -->
                            <div class="contentcolumne">
                               <h2>Deaths</h2>
                               <h1 id="stateDead">22</h1>
@@ -470,6 +470,14 @@
          		return item["Total Cases"] !== "NULL";
          	}
                })
+
+         $('.allIndia').on("click", function(){
+            d3.select("#statename").text("India")
+            animatedFormatData(indiaTotal[0]["totalIndians"],"#stateConfIndians")
+            // animatedFormatData(indiaTotal[0]["totalForeignCases"],"#stateConfForeigners")
+            animatedFormatData(indiaTotal[0]["totalCured"],"#stateCured")
+            animatedFormatData(indiaTotal[0]["totalDeaths"],"#stateDead")
+         })
                
          var formatComma = d3.format(",")
          function numberWithCommas(x) {
