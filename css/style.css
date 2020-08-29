@@ -1366,11 +1366,11 @@ fill: #035add!important;
         /*}*/
         #myacctable { margin-bottom: 30px; }
 
-        .indiaData .otherdata h1 { font-size: 26px; line-height: 35px; }
+        .indiaData .otherdata h1 { font-size: 20px; line-height: 35px; }
 
         .indiaData .otherdata { grid-template-columns: 33% 33% 33.9%; }
 
-        .stateDeaths { grid-template-columns: 45% 55%; padding: 10px 10px; }
+        .stateDeaths { padding: 10px 10px; }
 
         .stateDeaths img { width: 78%;}
 
