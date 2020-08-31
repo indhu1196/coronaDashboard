@@ -936,6 +936,7 @@ svg.india.map {
     font-weight: 400;
     font-size: 18px;
     margin: 0px 0 0 0;
+    line-height: 18px;
 }
 .indiaData .otherdata h1 {
     font-family: 'Rubik', sans-serif;
@@ -1225,7 +1226,7 @@ fill: #035add!important;
             margin: 25px 0;
         }
         .covidDash-wrapper .total-affected h1#totAffected {
-            font-size: 75px;
+            font-size: 60px;
             line-height: 80px;
         }
         .covidDash-wrapper .total-affected p {
@@ -1251,7 +1252,7 @@ fill: #035add!important;
             line-height: 27px;
         }
         .deathdata h1, .recoverdata h1 {
-            font-size: 50px;
+            font-size: 45px;
             line-height: 60px;
         }
         .barchart {
@@ -1261,13 +1262,16 @@ fill: #035add!important;
         .barchart .totalData div {
             margin: 10px 5px 0 0;
         }
+        .barchart .totalData div.criticalCondition, .barchart .totalData div.mildCondition {
+            margin: 10px 5px 0 10px;
+        }
         .barchart .totalData h1, .barchart .right-chart p {
             font-size: 20px;
             line-height: 28px;
         }
         .barchart .totalData h2, .barchart .right-chart h1 {
             font-size: 16px;
-            line-height: 20px;
+            line-height: 18px;
         }
         .horstackchart {
             margin: 0px 0;
@@ -1361,11 +1365,11 @@ fill: #035add!important;
         /*}*/
         #myacctable { margin-bottom: 30px; }
 
-        .indiaData .otherdata h1 { font-size: 26px; line-height: 35px; }
+        .indiaData .otherdata h1 { font-size: 22px; line-height: 35px; }
 
         .indiaData .otherdata { grid-template-columns: 33% 33% 33.9%; }
 
-        .stateDeaths { grid-template-columns: 45% 55%; padding: 10px 10px; }
+        .stateDeaths { grid-template-columns: 45% 55%; padding: 18px 10px 10px 10px; }
 
         .stateDeaths img { width: 78%;}
 
