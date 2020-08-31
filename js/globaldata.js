@@ -25,7 +25,7 @@
                         totalCases.reverse();
                         deathDate.reverse();
                             if(screen.width <= 767) {
-                                stepValue = { step: 30};
+                                stepValue = { step: 40};
                                 
                             } else {
                                 stepValue = { step: 35};  
@@ -50,7 +50,7 @@
                     totalDeaths.reverse();
                     totdeathDate.reverse();
                         if(screen.width <= 767) {
-                            stepValue = { step: 30};
+                            stepValue = { step: 40};
                         } else {
                             stepValue = { step: 35};  
                         }
@@ -205,6 +205,7 @@
                 
 
                 $("#globaldaily").click(function(){
+                            console.log(stepValue)
                     Highcharts.chart('dailydeath-container', {
                     exporting: {
                         buttons: {
